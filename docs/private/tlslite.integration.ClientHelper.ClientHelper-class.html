@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>tlslite.integration.ClientHelper.ClientHelper</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css"></link>
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="tlslite-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <font size="-1"><b class="breadcrumbs">
+        <a href="tlslite-module.html">Package&nbsp;tlslite</a> ::
+        <a href="tlslite.integration-module.html">Package&nbsp;integration</a> ::
+        <a href="..\private\tlslite.integration.ClientHelper-module.html">Module&nbsp;ClientHelper</a> ::
+        Class&nbsp;ClientHelper
+      </b></font></br>
+    </td>
+    <td><table cellpadding="0" cellspacing="0">
+      <tr><td align="right"><font size="-2">[<b>show&nbsp;private</b>&nbsp;|&nbsp;hide&nbsp;private]</font></td></tr>
+      <tr><td align="right"><font size="-2">[<a href="frames.html"target="_top">frames</a>&nbsp;|&nbsp;<a href="..\private\tlslite.integration.ClientHelper.ClientHelper-class.html" target="_top">no&nbsp;frames</a>]</font></td></tr>
+    </table></td>
+</tr></table>
+
+<!-- =========== START OF CLASS DESCRIPTION =========== -->
+<h2 class="class">Class ClientHelper</h2>
+
+<dl><dt><b>Known Subclasses:</b></dt>
+<dd>
+    <a href="tlslite.integration.HTTPTLSConnection.HTTPTLSConnection-class.html"><code>HTTPTLSConnection</code></a>,
+    <a href="tlslite.integration.IMAP4_TLS.IMAP4_TLS-class.html"><code>IMAP4_TLS</code></a>,
+    <a href="tlslite.integration.POP3_TLS.POP3_TLS-class.html"><code>POP3_TLS</code></a>,
+    <a href="tlslite.integration.XMLRPCTransport.XMLRPCTransport-class.html"><code>XMLRPCTransport</code></a></dd></dl>
+
+<hr/>
+
+This is a helper class used to integrate TLS Lite with various TLS 
+clients (e.g. poplib, smtplib, httplib, etc.)
+<hr/>
+
+
+<!-- =========== START OF METHOD SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Method Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="..\private\tlslite.integration.ClientHelper.ClientHelper-class.html#__init__" class="summary-sig-name"><code>__init__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>username</span>,
+          <span class=summary-sig-arg>password</span>,
+          <span class=summary-sig-arg>sharedKey</span>,
+          <span class=summary-sig-arg>certChain</span>,
+          <span class=summary-sig-arg>privateKey</span>,
+          <span class=summary-sig-arg>cryptoID</span>,
+          <span class=summary-sig-arg>protocol</span>,
+          <span class=summary-sig-arg>x509Fingerprint</span>,
+          <span class=summary-sig-arg>x509TrustList</span>,
+          <span class=summary-sig-arg>x509CommonName</span>,
+          <span class=summary-sig-arg>settings</span>)</span></code>
+<br />
+For client authentication, use one of these argument combinations:</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="_handshake"></a><span class="summary-sig"><span class="summary-sig-name">_handshake</span>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>tlsConnection</span>)</span></code>
+</td></tr>
+</table><br />
+
+
+<!-- =========== START OF METHOD DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Method Details</th></tr>
+</table>
+
+<a name="__init__"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">__init__</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>username</span>=<span class=sig-default>None</span>,
+          <span class=sig-arg>password</span>=<span class=sig-default>None</span>,
+          <span class=sig-arg>sharedKey</span>=<span class=sig-default>None</span>,
+          <span class=sig-arg>certChain</span>=<span class=sig-default>None</span>,
+          <span class=sig-arg>privateKey</span>=<span class=sig-default>None</span>,
+          <span class=sig-arg>cryptoID</span>=<span class=sig-default>None</span>,
+          <span class=sig-arg>protocol</span>=<span class=sig-default>None</span>,
+          <span class=sig-arg>x509Fingerprint</span>=<span class=sig-default>None</span>,
+          <span class=sig-arg>x509TrustList</span>=<span class=sig-default>None</span>,
+          <span class=sig-arg>x509CommonName</span>=<span class=sig-default>None</span>,
+          <span class=sig-arg>settings</span>=<span class=sig-default>None</span>)</span>
+    <br /><i>(Constructor)</i>
+  </h3>
+  For client authentication, use one of these argument 
+  combinations:
+  <ul>
+    <li>
+      username, password (SRP)
+    </li>
+    <li>
+      username, sharedKey (shared-key)
+    </li>
+    <li>
+      certChain, privateKey (certificate)
+    </li>
+  </ul>
+  For server authentication, you can either rely on the implicit 
+  mutual authentication performed by SRP or shared-keys, or you can do 
+  certificate-based server authentication with one of these argument 
+  combinations:
+  <ul>
+    <li>
+      cryptoID[, protocol] (requires cryptoIDlib)
+    </li>
+    <li>
+      x509Fingerprint
+    </li>
+    <li>
+      x509TrustList[, x509CommonName] (requires cryptlib_py)
+    </li>
+  </ul>
+  <p>Certificate-based server authentication is compatible with SRP or 
+  certificate-based client authentication. It is not compatible with 
+  shared-keys.</p>
+  The constructor does not perform the TLS handshake itself, but 
+  simply stores these arguments for later. The handshake is performed 
+  only when this class needs to connect with the server. Then you should 
+  be prepared to handle TLS-specific exceptions. See the client handshake 
+  functions in <a href="tlslite.TLSConnection.TLSConnection-class.html" 
+  class="link"><code>tlslite.TLSConnection.TLSConnection</code></a> for 
+  details on which exceptions might be raised.
+  <dl><dt></dt><dd>
+    <dl><dt><b>Parameters:</b></dt>
+      <dd><code><b>username</b></code> -
+         SRP or shared-key username. Requires the 'password' or 
+        'sharedKey' argument.
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=str)</i>
+      <dd><code><b>password</b></code> -
+         SRP password for mutual authentication. Requires the 
+        'username' argument.
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=str)</i>
+      <dd><code><b>sharedKey</b></code> -
+         Shared key for mutual authentication. Requires the 'username' 
+        argument.
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=str)</i>
+      <dd><code><b>certChain</b></code> -
+         Certificate chain for client authentication. Requires the 
+        'privateKey' argument. Excludes the SRP or shared-key related 
+        arguments.
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=<a href="tlslite.X509CertChain.X509CertChain-class.html" 
+              class="link"><code>tlslite.X509CertChain.X509CertChain</code></a> 
+              or <code>cryptoIDlib.CertChain.CertChain</code>)</i>
+      <dd><code><b>privateKey</b></code> -
+         Private key for client authentication. Requires the 
+        'certChain' argument. Excludes the SRP or shared-key related 
+        arguments.
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=<a href="tlslite.utils.RSAKey.RSAKey-class.html" 
+              class="link"><code>tlslite.utils.RSAKey.RSAKey</code></a>)</i>
+      <dd><code><b>cryptoID</b></code> -
+         cryptoID for server authentication. Mutually exclusive with 
+        the 'x509...' arguments.
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=str)</i>
+      <dd><code><b>protocol</b></code> -
+         cryptoID protocol URI for server authentication. Requires the 
+        'cryptoID' argument.
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=str)</i>
+      <dd><code><b>x509Fingerprint</b></code> -
+         Hex-encoded X.509 fingerprint for server authentication. 
+        Mutually exclusive with the 'cryptoID' and 'x509TrustList' 
+        arguments.
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=str)</i>
+      <dd><code><b>x509TrustList</b></code> -
+         A list of trusted root certificates. The other party must 
+        present a certificate chain which extends to one of these root 
+        certificates. The cryptlib_py module must be installed to use 
+        this parameter. Mutually exclusive with the 'cryptoID' and 
+        'x509Fingerprint' arguments.
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=list of <a href="tlslite.X509.X509-class.html" 
+              class="link"><code>tlslite.X509.X509</code></a>)</i>
+      <dd><code><b>x509CommonName</b></code> -
+         The end-entity certificate's 'CN' field must match this value. 
+        For a web server, this is typically a server name such as 
+        'www.amazon.com'. Mutually exclusive with the 'cryptoID' and 
+        'x509Fingerprint' arguments. Requires the 'x509TrustList' 
+        argument.
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=str)</i>
+      <dd><code><b>settings</b></code> -
+         Various settings which can be used to control the 
+        ciphersuites, certificate types, and SSL/TLS versions offered by 
+        the client.
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=<a 
+              href="tlslite.HandshakeSettings.HandshakeSettings-class.html" 
+              class="link"><code>tlslite.HandshakeSettings.HandshakeSettings</code></a>)</i>
+      </dd>
+    </dl>
+  </dd></dl>
+</td></tr></table>
+<br />
+
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="tlslite-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="left"><font size="-2">Generated by Epydoc 2.0 on Mon Feb 21 21:56:56 2005</font></td>
+    <td align="right"><a href="http://epydoc.sourceforge.net"
+                      ><font size="-2">http://epydoc.sf.net</font></a></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>poplib.POP3</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css"></link>
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="tlslite-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <font size="-1"><b class="breadcrumbs">
+        Module&nbsp;poplib ::
+        Class&nbsp;POP3
+      </b></font></br>
+    </td>
+    <td><table cellpadding="0" cellspacing="0">
+      <tr><td align="right"><font size="-2">[show&nbsp;private&nbsp;|&nbsp;<a href="../public/poplib.POP3-class.html">hide&nbsp;private</a>]</font></td></tr>
+      <tr><td align="right"><font size="-2">[<a href="frames.html"target="_top">frames</a>&nbsp;|&nbsp;<a href="poplib.POP3-class.html" target="_top">no&nbsp;frames</a>]</font></td></tr>
+    </table></td>
+</tr></table>
+
+<!-- =========== START OF CLASS DESCRIPTION =========== -->
+<h2 class="class">Class POP3</h2>
+
+<dl><dt><b>Known Subclasses:</b></dt>
+<dd>
+    <a href="tlslite.integration.POP3_TLS.POP3_TLS-class.html"><code>POP3_TLS</code></a></dd></dl>
+
+<hr/>
+
+<pre class="literalblock">
+This class supports both the minimal and optional command sets.
+Arguments can be strings or integers (where appropriate)
+(e.g.: retr(1) and retr('1') both work equally well.
+
+Minimal Command Set:
+        USER name               user(name)
+        PASS string             pass_(string)
+        STAT                    stat()
+        LIST [msg]              list(msg = None)
+        RETR msg                retr(msg)
+        DELE msg                dele(msg)
+        NOOP                    noop()
+        RSET                    rset()
+        QUIT                    quit()
+
+Optional Commands (some servers support these):
+        RPOP name               rpop(name)
+        APOP name digest        apop(name, digest)
+        TOP msg n               top(msg, n)
+        UIDL [msg]              uidl(msg = None)
+
+Raises one exception: 'error_proto'.
+
+Instantiate with:
+        POP3(hostname, port=110)
+
+NB:     the POP protocol locks the mailbox from user
+        authorization until QUIT, so be sure to get in, suck
+        the messages, and quit, each time you access the
+        mailbox.
+
+        POP is a line-based protocol, which means large mail
+        messages consume lots of python cycles reading them
+        line-by-line.
+
+        If it's available on your mail server, use IMAP4
+        instead, it doesn't suffer from the two problems
+        above.
+</pre>
+<hr/>
+
+
+<!-- =========== START OF METHOD SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Method Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="__init__"></a><span class="summary-sig"><span class="summary-sig-name">__init__</span>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>host</span>,
+          <span class=summary-sig-arg>port</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#apop" class="summary-sig-name"><code>apop</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>user</span>,
+          <span class=summary-sig-arg>secret</span>)</span></code>
+<br />
+Authorisation
+
+- only possible if server has supplied a timestamp in initial greeting.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#dele" class="summary-sig-name"><code>dele</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>which</span>)</span></code>
+<br />
+Delete message number 'which'.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="getwelcome"></a><span class="summary-sig"><span class="summary-sig-name">getwelcome</span>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#list" class="summary-sig-name"><code>list</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>which</span>)</span></code>
+<br />
+Request listing, return result.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#noop" class="summary-sig-name"><code>noop</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Does nothing.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#pass_" class="summary-sig-name"><code>pass_</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>pswd</span>)</span></code>
+<br />
+Send password, return response</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#quit" class="summary-sig-name"><code>quit</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Signoff: commit changes on server, unlock mailbox, close 
+connection.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#retr" class="summary-sig-name"><code>retr</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>which</span>)</span></code>
+<br />
+Retrieve whole message number 'which'.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#rpop" class="summary-sig-name"><code>rpop</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>user</span>)</span></code>
+<br />
+Not sure what this does.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#rset" class="summary-sig-name"><code>rset</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Not sure what this does.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="set_debuglevel"></a><span class="summary-sig"><span class="summary-sig-name">set_debuglevel</span>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>level</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#stat" class="summary-sig-name"><code>stat</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Get mailbox status.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#top" class="summary-sig-name"><code>top</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>which</span>,
+          <span class=summary-sig-arg>howmuch</span>)</span></code>
+<br />
+Retrieve message header of message number 'which' and first 'howmuch' 
+lines of message body.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#uidl" class="summary-sig-name"><code>uidl</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>which</span>)</span></code>
+<br />
+Return message digest (unique id) list.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="poplib.POP3-class.html#user" class="summary-sig-name"><code>user</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>user</span>)</span></code>
+<br />
+Send user name, return response</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="_getline"></a><span class="summary-sig"><span class="summary-sig-name">_getline</span>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="_getlongresp"></a><span class="summary-sig"><span class="summary-sig-name">_getlongresp</span>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="_getresp"></a><span class="summary-sig"><span class="summary-sig-name">_getresp</span>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="_longcmd"></a><span class="summary-sig"><span class="summary-sig-name">_longcmd</span>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>line</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="_putcmd"></a><span class="summary-sig"><span class="summary-sig-name">_putcmd</span>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>line</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="_putline"></a><span class="summary-sig"><span class="summary-sig-name">_putline</span>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>line</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="_shortcmd"></a><span class="summary-sig"><span class="summary-sig-name">_shortcmd</span>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>line</span>)</span></code>
+</td></tr>
+</table><br />
+
+
+<!-- =========== START OF CLASS VARIABLE SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Class Variable Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1"><code>SRE_Pattern</code></font></td>
+<td><b><a href="poplib.POP3-class.html#timestamp"><code>timestamp</code></a></b> = <span title="&lt;_sre.SRE_Pattern object at 0x00AF2D20&gt;"><code><span class="re"><span class="re-char">\+</span>OK<span class="re-char">.</span><span class="re-op">*</span><span class="re-group">(</span>&lt;<span class="re-group">[^</span>&gt;<span class="re-group">]</span><span class="re-op">+</span>&gt;<span class="re-group">)</span></span>                              </code>
+</span></td></tr>
+</table><br />
+
+
+<!-- =========== START OF METHOD DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Method Details</th></tr>
+</table>
+
+<a name="apop"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">apop</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>user</span>,
+          <span class=sig-arg>secret</span>)</span>
+  </h3>
+<pre class="literalblock">
+Authorisation
+
+- only possible if server has supplied a timestamp in initial greeting.
+
+Args:
+        user    - mailbox user;
+        secret  - secret shared between client and server.
+
+NB: mailbox is locked by server from here to 'quit()'
+</pre>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="dele"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">dele</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>which</span>)</span>
+  </h3>
+  <p>Delete message number 'which'.</p>
+  Result is 'response'.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="list"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">list</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>which</span>=<span class=sig-default>None</span>)</span>
+  </h3>
+  <p>Request listing, return result.</p>
+  <p>Result without a message number argument is in form ['response', 
+  ['mesg_num octets', ...]].</p>
+  Result when a message number argument is given is a single response: 
+  the &quot;scan listing&quot; for that message.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="noop"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">noop</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  <p>Does nothing.</p>
+  One supposes the response indicates the server is alive.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="pass_"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">pass_</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>pswd</span>)</span>
+  </h3>
+  <p>Send password, return response</p>
+  <p>(response includes message count, mailbox size).</p>
+  NB: mailbox is locked by server from here to 'quit()'
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="quit"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">quit</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  Signoff: commit changes on server, unlock mailbox, close 
+  connection.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="retr"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">retr</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>which</span>)</span>
+  </h3>
+  <p>Retrieve whole message number 'which'.</p>
+  Result is in form ['response', ['line', ...], octets].
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="rpop"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">rpop</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>user</span>)</span>
+  </h3>
+  Not sure what this does.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="rset"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">rset</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  Not sure what this does.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="stat"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">stat</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  <p>Get mailbox status.</p>
+  Result is tuple of 2 ints (message count, mailbox size)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="top"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">top</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>which</span>,
+          <span class=sig-arg>howmuch</span>)</span>
+  </h3>
+  <p>Retrieve message header of message number 'which' and first 
+  'howmuch' lines of message body.</p>
+  Result is in form ['response', ['line', ...], octets].
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="uidl"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">uidl</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>which</span>=<span class=sig-default>None</span>)</span>
+  </h3>
+  <p>Return message digest (unique id) list.</p>
+  If 'which', result contains unique id for that message in the form 
+  'response mesgnum uid', otherwise result is the list ['response', 
+  ['mesgnum uid', ...], octets]
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="user"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">user</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>user</span>)</span>
+  </h3>
+  <p>Send user name, return response</p>
+  (should indicate password required).
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+<br />
+
+
+<!-- =========== START OF CLASS VARIABLE DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Class Variable Details</th></tr>
+</table>
+<table width="100%" class="var-details" bgcolor="#e0e0e0"><tr><td>
+<a name="timestamp"></a>
+<h3>timestamp</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Type:</b></dt>
+      <dd>
+          <code>SRE_Pattern</code>
+
+      </dd>
+<span title="&lt;_sre.SRE_Pattern object at 0x00AF2D20&gt;">      <dt><b>Value:</b></dt>
+      <dd><table><tr><td>
+<pre class="variable">
+<span class="re"><span class="re-char">\+</span>OK<span class="re-char">.</span><span class="re-op">*</span><span class="re-group">(</span>&lt;<span class="re-group">[^</span>&gt;<span class="re-group">]</span><span class="re-op">+</span>&gt;<span class="re-group">)</span></span>                                                        </pre>
+        </td></tr></table></dd>
+</span>    </dl>
+  </dd>
+</dl></td></tr></table>
+<br />
+
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="tlslite-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="left"><font size="-2">Generated by Epydoc 2.0 on Mon Feb 21 21:56:53 2005</font></td>
+    <td align="right"><a href="http://epydoc.sourceforge.net"
+                      ><font size="-2">http://epydoc.sf.net</font></a></td>
+  </tr>
+</table>
+</body>
+</html>

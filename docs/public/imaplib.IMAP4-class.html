@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>imaplib.IMAP4</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css"></link>
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="tlslite-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <font size="-1"><b class="breadcrumbs">
+        Module&nbsp;imaplib ::
+        Class&nbsp;IMAP4
+      </b></font></br>
+    </td>
+    <td><table cellpadding="0" cellspacing="0">
+      <tr><td align="right"><font size="-2">[<a href="../private/imaplib.IMAP4-class.html">show&nbsp;private</a>&nbsp;|&nbsp;hide&nbsp;private]</font></td></tr>
+      <tr><td align="right"><font size="-2">[<a href="frames.html"target="_top">frames</a>&nbsp;|&nbsp;<a href="imaplib.IMAP4-class.html" target="_top">no&nbsp;frames</a>]</font></td></tr>
+    </table></td>
+</tr></table>
+
+<!-- =========== START OF CLASS DESCRIPTION =========== -->
+<h2 class="class">Class IMAP4</h2>
+
+<dl><dt><b>Known Subclasses:</b></dt>
+<dd>
+    <a href="tlslite.integration.IMAP4_TLS.IMAP4_TLS-class.html"><code>IMAP4_TLS</code></a></dd></dl>
+
+<hr/>
+
+<pre class="literalblock">
+IMAP4 client class.
+
+Instantiate with: IMAP4([host[, port]])
+
+        host - host's name (default: localhost);
+        port - port number (default: standard IMAP4 port).
+
+All IMAP4rev1 commands are supported by methods of the same
+name (in lower-case).
+
+All arguments to commands are converted to strings, except for
+AUTHENTICATE, and the last argument to APPEND which is passed as
+an IMAP4 literal.  If necessary (the string contains any
+non-printing characters or white-space and isn't enclosed with
+either parentheses or double quotes) each string is quoted.
+However, the 'password' argument to the LOGIN command is always
+quoted.  If you want to avoid having an argument string quoted
+(eg: the 'flags' argument to STORE) then enclose the string in
+parentheses (eg: &quot;(\Deleted)&quot;).
+
+Each command returns a tuple: (type, [data, ...]) where 'type'
+is usually 'OK' or 'NO', and 'data' is either the text from the
+tagged response, or untagged results from command. Each 'data'
+is either a string, or a tuple. If a tuple, then the first part
+is the header of the response, and the second part contains
+the data (ie: 'literal' value).
+
+Errors raise the exception class &lt;instance&gt;.error(&quot;&lt;reason&gt;&quot;).
+IMAP4 server errors raise &lt;instance&gt;.abort(&quot;&lt;reason&gt;&quot;),
+which is a sub-class of 'error'. Mailbox status changes
+from READ-WRITE to READ-ONLY raise the exception class
+&lt;instance&gt;.readonly(&quot;&lt;reason&gt;&quot;), which is a sub-class of 'abort'.
+
+&quot;error&quot; exceptions imply a program error.
+&quot;abort&quot; exceptions imply the connection should be reset, and
+        the command re-tried.
+&quot;readonly&quot; exceptions imply the command should be re-tried.
+
+Note: to use this module, you must read the RFCs pertaining
+to the IMAP4 protocol, as the semantics of the arguments to
+each IMAP4 command are left to the invoker, not to mention
+the results.
+</pre>
+<hr/>
+
+
+<!-- =========== START OF METHOD SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Method Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="__init__"></a><span class="summary-sig"><span class="summary-sig-name">__init__</span>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>host</span>,
+          <span class=summary-sig-arg>port</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="__getattr__"></a><span class="summary-sig"><span class="summary-sig-name">__getattr__</span>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>attr</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#append" class="summary-sig-name"><code>append</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>mailbox</span>,
+          <span class=summary-sig-arg>flags</span>,
+          <span class=summary-sig-arg>date_time</span>,
+          <span class=summary-sig-arg>message</span>)</span></code>
+<br />
+Append message to named mailbox.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#authenticate" class="summary-sig-name"><code>authenticate</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>mechanism</span>,
+          <span class=summary-sig-arg>authobject</span>)</span></code>
+<br />
+Authenticate command - requires response processing.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#check" class="summary-sig-name"><code>check</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Checkpoint mailbox on server.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#close" class="summary-sig-name"><code>close</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Close currently selected mailbox.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#copy" class="summary-sig-name"><code>copy</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>message_set</span>,
+          <span class=summary-sig-arg>new_mailbox</span>)</span></code>
+<br />
+Copy 'message_set' messages onto end of 'new_mailbox'.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#create" class="summary-sig-name"><code>create</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>mailbox</span>)</span></code>
+<br />
+Create new mailbox.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#delete" class="summary-sig-name"><code>delete</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>mailbox</span>)</span></code>
+<br />
+Delete old mailbox.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#expunge" class="summary-sig-name"><code>expunge</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Permanently remove deleted items from selected mailbox.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#fetch" class="summary-sig-name"><code>fetch</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>message_set</span>,
+          <span class=summary-sig-arg>message_parts</span>)</span></code>
+<br />
+Fetch (parts of) messages.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#getacl" class="summary-sig-name"><code>getacl</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>mailbox</span>)</span></code>
+<br />
+Get the ACLs for a mailbox.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#getquota" class="summary-sig-name"><code>getquota</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>root</span>)</span></code>
+<br />
+Get the quota root's resource usage and limits.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#getquotaroot" class="summary-sig-name"><code>getquotaroot</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>mailbox</span>)</span></code>
+<br />
+Get the list of quota roots for the named mailbox.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#list" class="summary-sig-name"><code>list</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>directory</span>,
+          <span class=summary-sig-arg>pattern</span>)</span></code>
+<br />
+List mailbox names in directory matching pattern.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#login" class="summary-sig-name"><code>login</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>user</span>,
+          <span class=summary-sig-arg>password</span>)</span></code>
+<br />
+Identify client using plaintext password.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#login_cram_md5" class="summary-sig-name"><code>login_cram_md5</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>user</span>,
+          <span class=summary-sig-arg>password</span>)</span></code>
+<br />
+Force use of CRAM-MD5 authentication.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#logout" class="summary-sig-name"><code>logout</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Shutdown connection to server.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#lsub" class="summary-sig-name"><code>lsub</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>directory</span>,
+          <span class=summary-sig-arg>pattern</span>)</span></code>
+<br />
+List 'subscribed' mailbox names in directory matching pattern.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#namespace" class="summary-sig-name"><code>namespace</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Returns IMAP namespaces ala rfc2342</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#noop" class="summary-sig-name"><code>noop</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Send NOOP command.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#open" class="summary-sig-name"><code>open</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>host</span>,
+          <span class=summary-sig-arg>port</span>)</span></code>
+<br />
+Setup connection to remote server on &quot;host:port&quot;
+    (default: localhost:standard IMAP4 port).</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#partial" class="summary-sig-name"><code>partial</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>message_num</span>,
+          <span class=summary-sig-arg>message_part</span>,
+          <span class=summary-sig-arg>start</span>,
+          <span class=summary-sig-arg>length</span>)</span></code>
+<br />
+Fetch truncated part of a message.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="print_log"></a><span class="summary-sig"><span class="summary-sig-name">print_log</span>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#proxyauth" class="summary-sig-name"><code>proxyauth</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>user</span>)</span></code>
+<br />
+Assume authentication as &quot;user&quot;.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#read" class="summary-sig-name"><code>read</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>size</span>)</span></code>
+<br />
+Read 'size' bytes from remote.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#readline" class="summary-sig-name"><code>readline</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Read line from remote.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#recent" class="summary-sig-name"><code>recent</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Return most recent 'RECENT' responses if any exist, else prompt server 
+for an update using the 'NOOP' command.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#rename" class="summary-sig-name"><code>rename</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>oldmailbox</span>,
+          <span class=summary-sig-arg>newmailbox</span>)</span></code>
+<br />
+Rename old mailbox name to new.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#response" class="summary-sig-name"><code>response</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>code</span>)</span></code>
+<br />
+Return data for response 'code' if received, or None.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#search" class="summary-sig-name"><code>search</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>charset</span>,
+          <span class="summary-sig-vararg">*criteria</span>)</span></code>
+<br />
+Search mailbox for matching messages.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#select" class="summary-sig-name"><code>select</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>mailbox</span>,
+          <span class=summary-sig-arg>readonly</span>)</span></code>
+<br />
+Select a mailbox.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#send" class="summary-sig-name"><code>send</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>data</span>)</span></code>
+<br />
+Send data to remote.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#setacl" class="summary-sig-name"><code>setacl</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>mailbox</span>,
+          <span class=summary-sig-arg>who</span>,
+          <span class=summary-sig-arg>what</span>)</span></code>
+<br />
+Set a mailbox acl.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#setquota" class="summary-sig-name"><code>setquota</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>root</span>,
+          <span class=summary-sig-arg>limits</span>)</span></code>
+<br />
+Set the quota root's resource limits.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#shutdown" class="summary-sig-name"><code>shutdown</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Close I/O established in &quot;open&quot;.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#socket" class="summary-sig-name"><code>socket</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Return socket instance used to connect to IMAP4 server.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#sort" class="summary-sig-name"><code>sort</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>sort_criteria</span>,
+          <span class=summary-sig-arg>charset</span>,
+          <span class="summary-sig-vararg">*search_criteria</span>)</span></code>
+<br />
+IMAP4rev1 extension SORT command.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#status" class="summary-sig-name"><code>status</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>mailbox</span>,
+          <span class=summary-sig-arg>names</span>)</span></code>
+<br />
+Request named status conditions for mailbox.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#store" class="summary-sig-name"><code>store</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>message_set</span>,
+          <span class=summary-sig-arg>command</span>,
+          <span class=summary-sig-arg>flags</span>)</span></code>
+<br />
+Alters flag dispositions for messages in mailbox.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#subscribe" class="summary-sig-name"><code>subscribe</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>mailbox</span>)</span></code>
+<br />
+Subscribe to new mailbox.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#uid" class="summary-sig-name"><code>uid</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>command</span>,
+          <span class="summary-sig-vararg">*args</span>)</span></code>
+<br />
+Execute &quot;command arg ...&quot; with messages identified by UID,
+        rather than message number.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#unsubscribe" class="summary-sig-name"><code>unsubscribe</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>mailbox</span>)</span></code>
+<br />
+Unsubscribe from old mailbox.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="imaplib.IMAP4-class.html#xatom" class="summary-sig-name"><code>xatom</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>name</span>,
+          <span class="summary-sig-vararg">*args</span>)</span></code>
+<br />
+Allow simple extension commands
+        notified by server in CAPABILITY response.</td></tr>
+</table><br />
+
+
+<!-- =========== START OF CLASS VARIABLE SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Class Variable Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1"><code>SRE_Pattern</code></font></td>
+<td><b><a href="imaplib.IMAP4-class.html#mustquote"><code>mustquote</code></a></b> = <span title="&lt;_sre.SRE_Pattern object at 0x00B1D890&gt;"><code><span class="re"><span class="re-group">[</span><span class="re-group">^</span><span class="re-char">\w</span>!#<span class="re-char">\$</span>%&amp;'<span class="re-char">\*</span><span class="re-char">\+</span>,<span class="re-char">\.</span>:;&lt;=&gt;<span class="re-char">\?</span><span class="re-char">\^</span>`<span class="re-char">\|</span>~-<span class="re-group">]</span></span>            </code>
+</span></td></tr>
+</table><br />
+
+
+<!-- =========== START OF METHOD DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Method Details</th></tr>
+</table>
+
+<a name="append"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">append</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>mailbox</span>,
+          <span class=sig-arg>flags</span>,
+          <span class=sig-arg>date_time</span>,
+          <span class=sig-arg>message</span>)</span>
+  </h3>
+<pre class="literalblock">
+Append message to named mailbox.
+
+(typ, [data]) = &lt;instance&gt;.append(mailbox, flags, date_time, message)
+
+        All args except `message' can be None.
+</pre>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="authenticate"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">authenticate</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>mechanism</span>,
+          <span class=sig-arg>authobject</span>)</span>
+  </h3>
+<pre class="literalblock">
+Authenticate command - requires response processing.
+
+'mechanism' specifies which authentication mechanism is to
+be used - it must appear in &lt;instance&gt;.capabilities in the
+form AUTH=&lt;mechanism&gt;.
+
+'authobject' must be a callable object:
+
+        data = authobject(response)
+
+It will be called to process server continuation responses.
+It should return data that will be encoded and sent to server.
+It should return None if the client abort response '*' should
+be sent instead.
+</pre>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="check"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">check</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  <p>Checkpoint mailbox on server.</p>
+  (typ, [data]) = &lt;instance&gt;.check()
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="close"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">close</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  <p>Close currently selected mailbox.</p>
+  <p>Deleted messages are removed from writable mailbox. This is the 
+  recommended command before 'LOGOUT'.</p>
+  (typ, [data]) = &lt;instance&gt;.close()
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="copy"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">copy</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>message_set</span>,
+          <span class=sig-arg>new_mailbox</span>)</span>
+  </h3>
+  <p>Copy 'message_set' messages onto end of 'new_mailbox'.</p>
+  (typ, [data]) = &lt;instance&gt;.copy(message_set, new_mailbox)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="create"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">create</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>mailbox</span>)</span>
+  </h3>
+  <p>Create new mailbox.</p>
+  (typ, [data]) = &lt;instance&gt;.create(mailbox)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="delete"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">delete</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>mailbox</span>)</span>
+  </h3>
+  <p>Delete old mailbox.</p>
+  (typ, [data]) = &lt;instance&gt;.delete(mailbox)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="expunge"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">expunge</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  <p>Permanently remove deleted items from selected mailbox.</p>
+  <p>Generates 'EXPUNGE' response for each deleted message.</p>
+  <p>(typ, [data]) = &lt;instance&gt;.expunge()</p>
+  'data' is list of 'EXPUNGE'd message numbers in order received.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="fetch"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">fetch</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>message_set</span>,
+          <span class=sig-arg>message_parts</span>)</span>
+  </h3>
+  <p>Fetch (parts of) messages.</p>
+  <p>(typ, [data, ...]) = &lt;instance&gt;.fetch(message_set, 
+  message_parts)</p>
+  <p>'message_parts' should be a string of selected parts enclosed in 
+  parentheses, eg: &quot;(UID BODY[TEXT])&quot;.</p>
+  'data' are tuples of message part envelope and data.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="getacl"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">getacl</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>mailbox</span>)</span>
+  </h3>
+  <p>Get the ACLs for a mailbox.</p>
+  (typ, [data]) = &lt;instance&gt;.getacl(mailbox)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="getquota"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">getquota</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>root</span>)</span>
+  </h3>
+  <p>Get the quota root's resource usage and limits.</p>
+  <p>Part of the IMAP4 QUOTA extension defined in rfc2087.</p>
+  (typ, [data]) = &lt;instance&gt;.getquota(root)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="getquotaroot"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">getquotaroot</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>mailbox</span>)</span>
+  </h3>
+  <p>Get the list of quota roots for the named mailbox.</p>
+  (typ, [[QUOTAROOT responses...], [QUOTA responses]]) = 
+  &lt;instance&gt;.getquotaroot(mailbox)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="list"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">list</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>directory</span>=<span class=sig-default>'&quot;&quot;'</span>,
+          <span class=sig-arg>pattern</span>=<span class=sig-default>'*'</span>)</span>
+  </h3>
+  <p>List mailbox names in directory matching pattern.</p>
+  <p>(typ, [data]) = &lt;instance&gt;.list(directory='&quot;&quot;', 
+  pattern='*')</p>
+  'data' is list of LIST responses.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="login"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">login</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>user</span>,
+          <span class=sig-arg>password</span>)</span>
+  </h3>
+  <p>Identify client using plaintext password.</p>
+  <p>(typ, [data]) = &lt;instance&gt;.login(user, password)</p>
+  NB: 'password' will be quoted.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="login_cram_md5"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">login_cram_md5</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>user</span>,
+          <span class=sig-arg>password</span>)</span>
+  </h3>
+  <p>Force use of CRAM-MD5 authentication.</p>
+  (typ, [data]) = &lt;instance&gt;.login_cram_md5(user, password)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="logout"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">logout</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  <p>Shutdown connection to server.</p>
+  <p>(typ, [data]) = &lt;instance&gt;.logout()</p>
+  Returns server 'BYE' response.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="lsub"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">lsub</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>directory</span>=<span class=sig-default>'&quot;&quot;'</span>,
+          <span class=sig-arg>pattern</span>=<span class=sig-default>'*'</span>)</span>
+  </h3>
+  <p>List 'subscribed' mailbox names in directory matching pattern.</p>
+  <p>(typ, [data, ...]) = &lt;instance&gt;.lsub(directory='&quot;&quot;', 
+  pattern='*')</p>
+  'data' are tuples of message part envelope and data.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="namespace"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">namespace</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  <p>Returns IMAP namespaces ala rfc2342</p>
+  (typ, [data, ...]) = &lt;instance&gt;.namespace()
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="noop"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">noop</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  <p>Send NOOP command.</p>
+  (typ, [data]) = &lt;instance&gt;.noop()
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="open"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">open</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>host</span>=<span class=sig-default>''</span>,
+          <span class=sig-arg>port</span>=<span class=sig-default>143</span>)</span>
+  </h3>
+<pre class="literalblock">
+Setup connection to remote server on &quot;host:port&quot;
+    (default: localhost:standard IMAP4 port).
+This connection will be used by the routines:
+    read, readline, send, shutdown.
+</pre>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="partial"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">partial</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>message_num</span>,
+          <span class=sig-arg>message_part</span>,
+          <span class=sig-arg>start</span>,
+          <span class=sig-arg>length</span>)</span>
+  </h3>
+  <p>Fetch truncated part of a message.</p>
+  <p>(typ, [data, ...]) = &lt;instance&gt;.partial(message_num, 
+  message_part, start, length)</p>
+  'data' is tuple of message part envelope and data.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="proxyauth"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">proxyauth</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>user</span>)</span>
+  </h3>
+  <p>Assume authentication as &quot;user&quot;.</p>
+  <p>Allows an authorised administrator to proxy into any user's 
+  mailbox.</p>
+  (typ, [data]) = &lt;instance&gt;.proxyauth(user)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="read"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">read</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>size</span>)</span>
+  </h3>
+  Read 'size' bytes from remote.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="readline"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">readline</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  Read line from remote.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="recent"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">recent</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  <p>Return most recent 'RECENT' responses if any exist, else prompt 
+  server for an update using the 'NOOP' command.</p>
+  <p>(typ, [data]) = &lt;instance&gt;.recent()</p>
+  'data' is None if no new messages, else list of RECENT responses, 
+  most recent last.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="rename"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">rename</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>oldmailbox</span>,
+          <span class=sig-arg>newmailbox</span>)</span>
+  </h3>
+  <p>Rename old mailbox name to new.</p>
+  (typ, [data]) = &lt;instance&gt;.rename(oldmailbox, newmailbox)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="response"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">response</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>code</span>)</span>
+  </h3>
+  <p>Return data for response 'code' if received, or None.</p>
+  <p>Old value for response 'code' is cleared.</p>
+  (code, [data]) = &lt;instance&gt;.response(code)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="search"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">search</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>charset</span>,
+          <span class="sig-vararg">*criteria</span>)</span>
+  </h3>
+  <p>Search mailbox for matching messages.</p>
+  <p>(typ, [data]) = &lt;instance&gt;.search(charset, criterion, ...)</p>
+  'data' is space separated list of matching message numbers.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="select"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">select</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>mailbox</span>=<span class=sig-default>'INBOX'</span>,
+          <span class=sig-arg>readonly</span>=<span class=sig-default>None</span>)</span>
+  </h3>
+  <p>Select a mailbox.</p>
+  <p>Flush all untagged responses.</p>
+  <p>(typ, [data]) = &lt;instance&gt;.select(mailbox='INBOX', 
+  readonly=None)</p>
+  'data' is count of messages in mailbox ('EXISTS' response).
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="send"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">send</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>data</span>)</span>
+  </h3>
+  Send data to remote.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="setacl"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">setacl</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>mailbox</span>,
+          <span class=sig-arg>who</span>,
+          <span class=sig-arg>what</span>)</span>
+  </h3>
+  <p>Set a mailbox acl.</p>
+  (typ, [data]) = &lt;instance&gt;.create(mailbox, who, what)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="setquota"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">setquota</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>root</span>,
+          <span class=sig-arg>limits</span>)</span>
+  </h3>
+  <p>Set the quota root's resource limits.</p>
+  (typ, [data]) = &lt;instance&gt;.setquota(root, limits)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="shutdown"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">shutdown</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  Close I/O established in &quot;open&quot;.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="socket"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">socket</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  <p>Return socket instance used to connect to IMAP4 server.</p>
+  socket = &lt;instance&gt;.socket()
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="sort"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">sort</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>sort_criteria</span>,
+          <span class=sig-arg>charset</span>,
+          <span class="sig-vararg">*search_criteria</span>)</span>
+  </h3>
+  <p>IMAP4rev1 extension SORT command.</p>
+  (typ, [data]) = &lt;instance&gt;.sort(sort_criteria, charset, 
+  search_criteria, ...)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="status"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">status</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>mailbox</span>,
+          <span class=sig-arg>names</span>)</span>
+  </h3>
+  <p>Request named status conditions for mailbox.</p>
+  (typ, [data]) = &lt;instance&gt;.status(mailbox, names)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="store"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">store</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>message_set</span>,
+          <span class=sig-arg>command</span>,
+          <span class=sig-arg>flags</span>)</span>
+  </h3>
+  <p>Alters flag dispositions for messages in mailbox.</p>
+  (typ, [data]) = &lt;instance&gt;.store(message_set, command, 
+  flags)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="subscribe"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">subscribe</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>mailbox</span>)</span>
+  </h3>
+  <p>Subscribe to new mailbox.</p>
+  (typ, [data]) = &lt;instance&gt;.subscribe(mailbox)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="uid"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">uid</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>command</span>,
+          <span class="sig-vararg">*args</span>)</span>
+  </h3>
+<pre class="literalblock">
+Execute &quot;command arg ...&quot; with messages identified by UID,
+        rather than message number.
+
+(typ, [data]) = &lt;instance&gt;.uid(command, arg1, arg2, ...)
+
+Returns response appropriate to 'command'.
+</pre>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="unsubscribe"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">unsubscribe</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>mailbox</span>)</span>
+  </h3>
+  <p>Unsubscribe from old mailbox.</p>
+  (typ, [data]) = &lt;instance&gt;.unsubscribe(mailbox)
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="xatom"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">xatom</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>name</span>,
+          <span class="sig-vararg">*args</span>)</span>
+  </h3>
+<pre class="literalblock">
+Allow simple extension commands
+        notified by server in CAPABILITY response.
+
+Assumes command is legal in current state.
+
+(typ, [data]) = &lt;instance&gt;.xatom(name, arg, ...)
+
+Returns response appropriate to extension command `name'.
+</pre>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+<br />
+
+
+<!-- =========== START OF CLASS VARIABLE DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Class Variable Details</th></tr>
+</table>
+<table width="100%" class="var-details" bgcolor="#e0e0e0"><tr><td>
+<a name="mustquote"></a>
+<h3>mustquote</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Type:</b></dt>
+      <dd>
+          <code>SRE_Pattern</code>
+
+      </dd>
+<span title="&lt;_sre.SRE_Pattern object at 0x00B1D890&gt;">      <dt><b>Value:</b></dt>
+      <dd><table><tr><td>
+<pre class="variable">
+<span class="re"><span class="re-group">[</span><span class="re-group">^</span><span class="re-char">\w</span>!#<span class="re-char">\$</span>%&amp;'<span class="re-char">\*</span><span class="re-char">\+</span>,<span class="re-char">\.</span>:;&lt;=&gt;<span class="re-char">\?</span><span class="re-char">\^</span>`<span class="re-char">\|</span>~-<span class="re-group">]</span></span>                                      </pre>
+        </td></tr></table></dd>
+</span>    </dl>
+  </dd>
+</dl></td></tr></table>
+<br />
+
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="tlslite-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="left"><font size="-2">Generated by Epydoc 2.0 on Mon Feb 21 21:56:53 2005</font></td>
+    <td align="right"><a href="http://epydoc.sourceforge.net"
+                      ><font size="-2">http://epydoc.sf.net</font></a></td>
+  </tr>
+</table>
+</body>
+</html>

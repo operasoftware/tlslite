@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>smtplib.SMTP</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css"></link>
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="tlslite-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <font size="-1"><b class="breadcrumbs">
+        Module&nbsp;smtplib ::
+        Class&nbsp;SMTP
+      </b></font></br>
+    </td>
+    <td><table cellpadding="0" cellspacing="0">
+      <tr><td align="right"><font size="-2">[<a href="../private/smtplib.SMTP-class.html">show&nbsp;private</a>&nbsp;|&nbsp;hide&nbsp;private]</font></td></tr>
+      <tr><td align="right"><font size="-2">[<a href="frames.html"target="_top">frames</a>&nbsp;|&nbsp;<a href="smtplib.SMTP-class.html" target="_top">no&nbsp;frames</a>]</font></td></tr>
+    </table></td>
+</tr></table>
+
+<!-- =========== START OF CLASS DESCRIPTION =========== -->
+<h2 class="class">Class SMTP</h2>
+
+<dl><dt><b>Known Subclasses:</b></dt>
+<dd>
+    <a href="tlslite.integration.SMTP_TLS.SMTP_TLS-class.html"><code>SMTP_TLS</code></a></dd></dl>
+
+<hr/>
+
+<pre class="literalblock">
+This class manages a connection to an SMTP or ESMTP server.
+SMTP Objects:
+    SMTP objects have the following attributes:
+        helo_resp
+            This is the message given by the server in response to the
+            most recent HELO command.
+
+        ehlo_resp
+            This is the message given by the server in response to the
+            most recent EHLO command. This is usually multiline.
+
+        does_esmtp
+            This is a True value _after you do an EHLO command_, if the
+            server supports ESMTP.
+
+        esmtp_features
+            This is a dictionary, which, if the server supports ESMTP,
+            will _after you do an EHLO command_, contain the names of the
+            SMTP service extensions this server supports, and their
+            parameters (if any).
+
+            Note, all extension names are mapped to lower case in the
+            dictionary.
+
+    See each method's docstrings for details.  In general, there is a
+    method of the same name to perform each SMTP command.  There is also a
+    method called 'sendmail' that will do an entire mail transaction.
+</pre>
+<hr/>
+
+
+<!-- =========== START OF METHOD SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Method Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#__init__" class="summary-sig-name"><code>__init__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>host</span>,
+          <span class=summary-sig-arg>port</span>,
+          <span class=summary-sig-arg>local_hostname</span>)</span></code>
+<br />
+Initialize a new instance.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#close" class="summary-sig-name"><code>close</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Close the connection to the SMTP server.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#connect" class="summary-sig-name"><code>connect</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>host</span>,
+          <span class=summary-sig-arg>port</span>)</span></code>
+<br />
+Connect to a host on a given port.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#data" class="summary-sig-name"><code>data</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>msg</span>)</span></code>
+<br />
+SMTP 'DATA' command -- sends message data to server.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#docmd" class="summary-sig-name"><code>docmd</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>cmd</span>,
+          <span class=summary-sig-arg>args</span>)</span></code>
+<br />
+Send a command, and return its response code.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#ehlo" class="summary-sig-name"><code>ehlo</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>name</span>)</span></code>
+<br />
+SMTP 'ehlo' command.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#expn" class="summary-sig-name"><code>expn</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>address</span>)</span></code>
+<br />
+SMTP 'verify' command -- checks for address validity.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#getreply" class="summary-sig-name"><code>getreply</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Get a reply from the server.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#has_extn" class="summary-sig-name"><code>has_extn</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>opt</span>)</span></code>
+<br />
+Does the server support a given SMTP service extension?</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#helo" class="summary-sig-name"><code>helo</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>name</span>)</span></code>
+<br />
+SMTP 'helo' command.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#help" class="summary-sig-name"><code>help</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>args</span>)</span></code>
+<br />
+SMTP 'help' command.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#login" class="summary-sig-name"><code>login</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>user</span>,
+          <span class=summary-sig-arg>password</span>)</span></code>
+<br />
+Log in on an SMTP server that requires authentication.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#mail" class="summary-sig-name"><code>mail</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>sender</span>,
+          <span class=summary-sig-arg>options</span>)</span></code>
+<br />
+SMTP 'mail' command -- begins mail xfer session.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#noop" class="summary-sig-name"><code>noop</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+SMTP 'noop' command -- doesn't do anything :&gt;</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#putcmd" class="summary-sig-name"><code>putcmd</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>cmd</span>,
+          <span class=summary-sig-arg>args</span>)</span></code>
+<br />
+Send a command to the server.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#quit" class="summary-sig-name"><code>quit</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Terminate the SMTP session.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#rcpt" class="summary-sig-name"><code>rcpt</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>recip</span>,
+          <span class=summary-sig-arg>options</span>)</span></code>
+<br />
+SMTP 'rcpt' command -- indicates 1 recipient for this mail.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#rset" class="summary-sig-name"><code>rset</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+SMTP 'rset' command -- resets session.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#send" class="summary-sig-name"><code>send</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>str</span>)</span></code>
+<br />
+Send `str' to the server.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#sendmail" class="summary-sig-name"><code>sendmail</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>from_addr</span>,
+          <span class=summary-sig-arg>to_addrs</span>,
+          <span class=summary-sig-arg>msg</span>,
+          <span class=summary-sig-arg>mail_options</span>,
+          <span class=summary-sig-arg>rcpt_options</span>)</span></code>
+<br />
+This command performs an entire mail transaction.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#set_debuglevel" class="summary-sig-name"><code>set_debuglevel</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>debuglevel</span>)</span></code>
+<br />
+Set the debug output level.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#starttls" class="summary-sig-name"><code>starttls</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>keyfile</span>,
+          <span class=summary-sig-arg>certfile</span>)</span></code>
+<br />
+Puts the connection to the SMTP server into TLS mode.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#verify" class="summary-sig-name"><code>verify</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>address</span>)</span></code>
+<br />
+SMTP 'verify' command -- checks for address validity.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="smtplib.SMTP-class.html#verify" class="summary-sig-name"><code>vrfy</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>address</span>)</span></code>
+<br />
+SMTP 'verify' command -- checks for address validity.</td></tr>
+</table><br />
+
+
+<!-- =========== START OF CLASS VARIABLE SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Class Variable Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1"><code>int</code></font></td>
+<td><b><a href="smtplib.SMTP-class.html#debuglevel"><code>debuglevel</code></a></b> = <span title="0">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1"><code>int</code></font></td>
+<td><b><a href="smtplib.SMTP-class.html#does_esmtp"><code>does_esmtp</code></a></b> = <span title="0">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1"><code>NoneType</code></font></td>
+<td><b><a href="smtplib.SMTP-class.html#ehlo_resp"><code>ehlo_resp</code></a></b> = <span title="None">None&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1"><code>NoneType</code></font></td>
+<td><b><a href="smtplib.SMTP-class.html#file"><code>file</code></a></b> = <span title="None">None&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1"><code>NoneType</code></font></td>
+<td><b><a href="smtplib.SMTP-class.html#helo_resp"><code>helo_resp</code></a></b> = <span title="None">None&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>
+</table><br />
+
+
+<!-- =========== START OF METHOD DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Method Details</th></tr>
+</table>
+
+<a name="__init__"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">__init__</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>host</span>=<span class=sig-default>''</span>,
+          <span class=sig-arg>port</span>=<span class=sig-default>0</span>,
+          <span class=sig-arg>local_hostname</span>=<span class=sig-default>None</span>)</span>
+    <br /><i>(Constructor)</i>
+  </h3>
+  <p>Initialize a new instance.</p>
+  If specified, `host' is the name of the remote host to which to 
+  connect. If specified, `port' specifies the port to which to connect. 
+  By default, smtplib.SMTP_PORT is used. An SMTPConnectError is raised if 
+  the specified `host' doesn't respond correctly. If specified, 
+  `local_hostname` is used as the FQDN of the local host. By default, the 
+  local hostname is found using socket.getfqdn().
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="close"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">close</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  Close the connection to the SMTP server.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="connect"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">connect</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>host</span>=<span class=sig-default>'localhost'</span>,
+          <span class=sig-arg>port</span>=<span class=sig-default>0</span>)</span>
+  </h3>
+  <p>Connect to a host on a given port.</p>
+  <p>If the hostname ends with a colon (`:') followed by a number, and 
+  there is no port specified, that suffix will be stripped off and the 
+  number interpreted as the port number to use.</p>
+  Note: This method is automatically invoked by __init__, if a host is 
+  specified during instantiation.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="data"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">data</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>msg</span>)</span>
+  </h3>
+  <p>SMTP 'DATA' command -- sends message data to server.</p>
+  Automatically quotes lines beginning with a period per rfc821. 
+  Raises SMTPDataError if there is an unexpected reply to the DATA 
+  command; the return value from this method is the final response code 
+  received when the all data is sent.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="docmd"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">docmd</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>cmd</span>,
+          <span class=sig-arg>args</span>=<span class=sig-default>''</span>)</span>
+  </h3>
+  Send a command, and return its response code.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="ehlo"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">ehlo</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>name</span>=<span class=sig-default>''</span>)</span>
+  </h3>
+  SMTP 'ehlo' command. Hostname to send for this command defaults to 
+  the FQDN of the local host.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="expn"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">expn</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>address</span>)</span>
+  </h3>
+  SMTP 'verify' command -- checks for address validity.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="getreply"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">getreply</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  <p>Get a reply from the server.</p>
+  Returns a tuple consisting of:
+  <ul>
+    <li>
+      server response code (e.g. '250', or such, if all goes well) 
+      Note: returns -1 if it can't read response code.
+    </li>
+    <li>
+      server response string corresponding to response code (multiline 
+      responses are converted to a single, multiline string).
+    </li>
+  </ul>
+  Raises SMTPServerDisconnected if end-of-file is reached.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="has_extn"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">has_extn</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>opt</span>)</span>
+  </h3>
+  Does the server support a given SMTP service extension?
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="helo"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">helo</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>name</span>=<span class=sig-default>''</span>)</span>
+  </h3>
+  SMTP 'helo' command. Hostname to send for this command defaults to 
+  the FQDN of the local host.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="help"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">help</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>args</span>=<span class=sig-default>''</span>)</span>
+  </h3>
+  SMTP 'help' command. Returns help text from server.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="login"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">login</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>user</span>,
+          <span class=sig-arg>password</span>)</span>
+  </h3>
+<pre class="literalblock">
+Log in on an SMTP server that requires authentication.
+
+The arguments are:
+    - user:     The user name to authenticate with.
+    - password: The password for the authentication.
+
+If there has been no previous EHLO or HELO command this session, this
+method tries ESMTP EHLO first.
+
+This method will return normally if the authentication was successful.
+
+This method may raise the following exceptions:
+
+ SMTPHeloError            The server didn't reply properly to
+                          the helo greeting.
+ SMTPAuthenticationError  The server didn't accept the username/
+                          password combination.
+ SMTPException            No suitable authentication method was
+                          found.
+</pre>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="mail"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">mail</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>sender</span>,
+          <span class=sig-arg>options</span>=<span class=sig-default>[]</span>)</span>
+  </h3>
+  SMTP 'mail' command -- begins mail xfer session.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="noop"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">noop</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  SMTP 'noop' command -- doesn't do anything :&gt;
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="putcmd"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">putcmd</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>cmd</span>,
+          <span class=sig-arg>args</span>=<span class=sig-default>''</span>)</span>
+  </h3>
+  Send a command to the server.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="quit"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">quit</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  Terminate the SMTP session.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="rcpt"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">rcpt</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>recip</span>,
+          <span class=sig-arg>options</span>=<span class=sig-default>[]</span>)</span>
+  </h3>
+  SMTP 'rcpt' command -- indicates 1 recipient for this mail.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="rset"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">rset</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  SMTP 'rset' command -- resets session.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="send"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">send</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>str</span>)</span>
+  </h3>
+  Send `str' to the server.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="sendmail"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">sendmail</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>from_addr</span>,
+          <span class=sig-arg>to_addrs</span>,
+          <span class=sig-arg>msg</span>,
+          <span class=sig-arg>mail_options</span>=<span class=sig-default>[]</span>,
+          <span class=sig-arg>rcpt_options</span>=<span class=sig-default>[]</span>)</span>
+  </h3>
+<pre class="literalblock">
+This command performs an entire mail transaction.
+
+The arguments are:
+    - from_addr    : The address sending this mail.
+    - to_addrs     : A list of addresses to send this mail to.  A bare
+                     string will be treated as a list with 1 address.
+    - msg          : The message to send.
+    - mail_options : List of ESMTP options (such as 8bitmime) for the
+                     mail command.
+    - rcpt_options : List of ESMTP options (such as DSN commands) for
+                     all the rcpt commands.
+
+If there has been no previous EHLO or HELO command this session, this
+method tries ESMTP EHLO first.  If the server does ESMTP, message size
+and each of the specified options will be passed to it.  If EHLO
+fails, HELO will be tried and ESMTP options suppressed.
+
+This method will return normally if the mail is accepted for at least
+one recipient.  It returns a dictionary, with one entry for each
+recipient that was refused.  Each entry contains a tuple of the SMTP
+error code and the accompanying error message sent by the server.
+
+This method may raise the following exceptions:
+
+ SMTPHeloError          The server didn't reply properly to
+                        the helo greeting.
+ SMTPRecipientsRefused  The server rejected ALL recipients
+                        (no mail was sent).
+ SMTPSenderRefused      The server didn't accept the from_addr.
+ SMTPDataError          The server replied with an unexpected
+                        error code (other than a refusal of
+                        a recipient).
+
+Note: the connection will be open even after an exception is raised.
+
+Example:
+
+ &gt;&gt;&gt; import smtplib
+ &gt;&gt;&gt; s=smtplib.SMTP(&quot;localhost&quot;)
+ &gt;&gt;&gt; tolist=[&quot;one&#64;one.org&quot;,&quot;two&#64;two.org&quot;,&quot;three&#64;three.org&quot;,&quot;four&#64;four.org&quot;]
+ &gt;&gt;&gt; msg = '''\
+ ... From: Me&#64;my.org
+ ... Subject: testin'...
+ ...
+ ... This is a test '''
+ &gt;&gt;&gt; s.sendmail(&quot;me&#64;my.org&quot;,tolist,msg)
+ { &quot;three&#64;three.org&quot; : ( 550 ,&quot;User unknown&quot; ) }
+ &gt;&gt;&gt; s.quit()
+
+In the above example, the message was accepted for delivery to three
+of the four addresses, and one was rejected, with the error code
+550.  If all addresses are accepted, then the method will return an
+empty dictionary.
+</pre>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="set_debuglevel"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">set_debuglevel</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>debuglevel</span>)</span>
+  </h3>
+  <p>Set the debug output level.</p>
+  A non-false value results in debug messages for connection and for 
+  all messages sent to and received from the server.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="starttls"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">starttls</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>keyfile</span>=<span class=sig-default>None</span>,
+          <span class=sig-arg>certfile</span>=<span class=sig-default>None</span>)</span>
+  </h3>
+  <p>Puts the connection to the SMTP server into TLS mode.</p>
+  If the server supports TLS, this will encrypt the rest of the SMTP 
+  session. If you provide the keyfile and certfile parameters, the 
+  identity of the SMTP server and client can be checked. This, however, 
+  depends on whether the socket module really checks the 
+  certificates.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="verify"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">verify</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>address</span>)</span>
+  </h3>
+  SMTP 'verify' command -- checks for address validity.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="verify"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">vrfy</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>address</span>)</span>
+  </h3>
+  SMTP 'verify' command -- checks for address validity.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+<br />
+
+
+<!-- =========== START OF CLASS VARIABLE DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Class Variable Details</th></tr>
+</table>
+<table width="100%" class="var-details" bgcolor="#e0e0e0"><tr><td>
+<a name="debuglevel"></a>
+<h3>debuglevel</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Type:</b></dt>
+      <dd>
+          <code>int</code>
+
+      </dd>
+<span title="0">      <dt><b>Value:</b></dt>
+      <dd><table><tr><td>
+<pre class="variable">
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre>
+        </td></tr></table></dd>
+</span>    </dl>
+  </dd>
+</dl></td></tr></table>
+<table width="100%" class="var-details" bgcolor="#e0e0e0"><tr><td>
+<a name="does_esmtp"></a>
+<h3>does_esmtp</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Type:</b></dt>
+      <dd>
+          <code>int</code>
+
+      </dd>
+<span title="0">      <dt><b>Value:</b></dt>
+      <dd><table><tr><td>
+<pre class="variable">
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre>
+        </td></tr></table></dd>
+</span>    </dl>
+  </dd>
+</dl></td></tr></table>
+<table width="100%" class="var-details" bgcolor="#e0e0e0"><tr><td>
+<a name="ehlo_resp"></a>
+<h3>ehlo_resp</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Type:</b></dt>
+      <dd>
+          <code>NoneType</code>
+
+      </dd>
+<span title="None">      <dt><b>Value:</b></dt>
+      <dd><table><tr><td>
+<pre class="variable">
+None&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre>
+        </td></tr></table></dd>
+</span>    </dl>
+  </dd>
+</dl></td></tr></table>
+<table width="100%" class="var-details" bgcolor="#e0e0e0"><tr><td>
+<a name="file"></a>
+<h3>file</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Type:</b></dt>
+      <dd>
+          <code>NoneType</code>
+
+      </dd>
+<span title="None">      <dt><b>Value:</b></dt>
+      <dd><table><tr><td>
+<pre class="variable">
+None&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre>
+        </td></tr></table></dd>
+</span>    </dl>
+  </dd>
+</dl></td></tr></table>
+<table width="100%" class="var-details" bgcolor="#e0e0e0"><tr><td>
+<a name="helo_resp"></a>
+<h3>helo_resp</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Type:</b></dt>
+      <dd>
+          <code>NoneType</code>
+
+      </dd>
+<span title="None">      <dt><b>Value:</b></dt>
+      <dd><table><tr><td>
+<pre class="variable">
+None&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre>
+        </td></tr></table></dd>
+</span>    </dl>
+  </dd>
+</dl></td></tr></table>
+<br />
+
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="tlslite-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="left"><font size="-2">Generated by Epydoc 2.0 on Mon Feb 21 21:56:53 2005</font></td>
+    <td align="right"><a href="http://epydoc.sourceforge.net"
+                      ><font size="-2">http://epydoc.sf.net</font></a></td>
+  </tr>
+</table>
+</body>
+</html>
