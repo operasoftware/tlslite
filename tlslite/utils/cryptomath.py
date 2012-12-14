@@ -6,6 +6,8 @@ import os
 import math
 import base64
 import binascii
+import warnings
+warnings.simplefilter("ignore",DeprecationWarning)
 import sha
 
 from compat import *

@@ -2,6 +2,8 @@
 
 from utils.compat import *
 from utils.cryptomath import *
+import warnings
+warnings.simplefilter("ignore",DeprecationWarning)
 
 import hmac
 import md5

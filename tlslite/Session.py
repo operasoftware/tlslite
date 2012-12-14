@@ -48,6 +48,13 @@ class Session:
         self.serverCertChain = None
         self.resumable = False
         self.sharedKey = False
+        self.received_renego_information = False
+        self.received_SNI_signal = False
+        self.received_SNI_alert = False
+        self.certificateStatusResponse = None
+        self.test_cipher_selected = False
+        self.dhe_keysize = 0
+        self.session_ticket = None
 
     def _clone(self):
         other = Session()
@@ -60,6 +67,13 @@ class Session:
         other.serverCertChain = self.serverCertChain
         other.resumable = self.resumable
         other.sharedKey = self.sharedKey
+        other.received_renego_information = self.received_renego_information
+        other.received_SNI_signal = self.received_SNI_signal
+        other.received_SNI_alert = self.received_SNI_alert
+        other.certificateStatusResponse = self.certificateStatusResponse
+        other.test_cipher_selected = self.test_cipher_selected 
+        other.dhe_keysize = self.dhe_keysize
+        other.session_ticket = self.session_ticket
         return other
 
     def _calcMasterSecret(self, version, premasterSecret, clientRandom,

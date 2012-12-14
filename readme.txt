@@ -47,6 +47,8 @@ Thanks to Bram Cohen for his public domain Rijndael implementation.
 
 Thanks to Edward Loper for Epydoc, which generated the API docs.
 
+Updated by Yngve N. Pettersen, Opera Software ASA, 2009-2012
+
 
 3 Installation
 ===============

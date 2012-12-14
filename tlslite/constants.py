@@ -1,277 +1,776 @@
 """Constants used in various places."""
 
 class CertificateType:
-    x509 = 0
-    openpgp = 1
-    cryptoID = 2
+	x509 = 0
+	openpgp = 1
+	cryptoID = 2
 
 class HandshakeType:
-    hello_request = 0
-    client_hello = 1
-    server_hello = 2
-    certificate = 11
-    server_key_exchange = 12
-    certificate_request = 13
-    server_hello_done = 14
-    certificate_verify = 15
-    client_key_exchange = 16
-    finished = 20
+	hello_request = 0
+	client_hello = 1
+	server_hello = 2
+	certificate = 11
+	server_key_exchange = 12
+	certificate_request = 13
+	server_hello_done = 14
+	certificate_verify = 15
+	client_key_exchange = 16
+	finished = 20
+	certificate_status = 22
+	new_session_ticket = 4
 
 class ContentType:
-    change_cipher_spec = 20
-    alert = 21
-    handshake = 22
-    application_data = 23
-    all = (20,21,22,23)
+	change_cipher_spec = 20
+	alert = 21
+	handshake = 22
+	application_data = 23
+	all = (20,21,22,23)
 
 class AlertLevel:
-    warning = 1
-    fatal = 2
+	warning = 1
+	fatal = 2
 
 class AlertDescription:
-    """
-    @cvar bad_record_mac: A TLS record failed to decrypt properly.
+	"""
+	@cvar bad_record_mac: A TLS record failed to decrypt properly.
 
-    If this occurs during a shared-key or SRP handshake it most likely
-    indicates a bad password.  It may also indicate an implementation
-    error, or some tampering with the data in transit.
+	If this occurs during a shared-key or SRP handshake it most likely
+	indicates a bad password.  It may also indicate an implementation
+	error, or some tampering with the data in transit.
 
-    This alert will be signalled by the server if the SRP password is bad.  It
-    may also be signalled by the server if the SRP username is unknown to the
-    server, but it doesn't wish to reveal that fact.
+	This alert will be signalled by the server if the SRP password is bad.  It
+	may also be signalled by the server if the SRP username is unknown to the
+	server, but it doesn't wish to reveal that fact.
 
-    This alert will be signalled by the client if the shared-key username is
-    bad.
+	This alert will be signalled by the client if the shared-key username is
+	bad.
 
-    @cvar handshake_failure: A problem occurred while handshaking.
+	@cvar handshake_failure: A problem occurred while handshaking.
 
-    This typically indicates a lack of common ciphersuites between client and
-    server, or some other disagreement (about SRP parameters or key sizes,
-    for example).
+	This typically indicates a lack of common ciphersuites between client and
+	server, or some other disagreement (about SRP parameters or key sizes,
+	for example).
 
-    @cvar protocol_version: The other party's SSL/TLS version was unacceptable.
+	@cvar protocol_version: The other party's SSL/TLS version was unacceptable.
 
-    This indicates that the client and server couldn't agree on which version
-    of SSL or TLS to use.
+	This indicates that the client and server couldn't agree on which version
+	of SSL or TLS to use.
 
-    @cvar user_canceled: The handshake is being cancelled for some reason.
+	@cvar user_canceled: The handshake is being cancelled for some reason.
 
-    """
+	"""
 
-    close_notify = 0
-    unexpected_message = 10
-    bad_record_mac = 20
-    decryption_failed = 21
-    record_overflow = 22
-    decompression_failure = 30
-    handshake_failure = 40
-    no_certificate = 41 #SSLv3
-    bad_certificate = 42
-    unsupported_certificate = 43
-    certificate_revoked = 44
-    certificate_expired = 45
-    certificate_unknown = 46
-    illegal_parameter = 47
-    unknown_ca = 48
-    access_denied = 49
-    decode_error = 50
-    decrypt_error = 51
-    export_restriction = 60
-    protocol_version = 70
-    insufficient_security = 71
-    internal_error = 80
-    user_canceled = 90
-    no_renegotiation = 100
-    unknown_srp_username = 120
-    missing_srp_username = 121
-    untrusted_srp_parameters = 122
+	close_notify = 0
+	unexpected_message = 10
+	bad_record_mac = 20
+	decryption_failed = 21
+	record_overflow = 22
+	decompression_failure = 30
+	handshake_failure = 40
+	no_certificate = 41 #SSLv3
+	bad_certificate = 42
+	unsupported_certificate = 43
+	certificate_revoked = 44
+	certificate_expired = 45
+	certificate_unknown = 46
+	illegal_parameter = 47
+	unknown_ca = 48
+	access_denied = 49
+	decode_error = 50
+	decrypt_error = 51
+	export_restriction = 60
+	protocol_version = 70
+	insufficient_security = 71
+	internal_error = 80
+	user_canceled = 90
+	no_renegotiation = 100
+	unrecognized_name = 112
+	unknown_srp_username = 120
+	missing_srp_username = 121
+	untrusted_srp_parameters = 122
 
 class CipherSuite:
-    TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA  = 0x0050
-    TLS_SRP_SHA_WITH_AES_128_CBC_SHA = 0x0053
-    TLS_SRP_SHA_WITH_AES_256_CBC_SHA = 0x0056
+	TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA  = 0x0050
+	TLS_SRP_SHA_WITH_AES_128_CBC_SHA = 0x0053
+	TLS_SRP_SHA_WITH_AES_256_CBC_SHA = 0x0056
 
-    TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA = 0x0051
-    TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA = 0x0054
-    TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA = 0x0057
+	TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA = 0x0051
+	TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA = 0x0054
+	TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA = 0x0057
 
-    TLS_RSA_WITH_3DES_EDE_CBC_SHA = 0x000A
-    TLS_RSA_WITH_AES_128_CBC_SHA = 0x002F
-    TLS_RSA_WITH_AES_256_CBC_SHA = 0x0035
-    TLS_RSA_WITH_RC4_128_SHA = 0x0005
-    TLS_RSA_WITH_RC4_128_MD5 = 0x0004
-    
-    TLS_RSA_WITH_AES_128_CBC_SHA256 = 0x003C
-    TLS_RSA_WITH_AES_256_CBC_SHA256 = 0x003D
+	TLS_RSA_WITH_3DES_EDE_CBC_SHA = 0x000A
+	TLS_RSA_WITH_AES_128_CBC_SHA = 0x002F
+	TLS_RSA_WITH_AES_256_CBC_SHA = 0x0035
+	TLS_RSA_WITH_RC4_128_SHA = 0x0005
+	TLS_RSA_WITH_RC4_128_MD5 = 0x0004
+	
+	TLS_RSA_WITH_AES_128_CBC_SHA256 = 0x003C
+	TLS_RSA_WITH_AES_256_CBC_SHA256 = 0x003D
 
-    toText = {
-                TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA:"TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA",
-                TLS_SRP_SHA_WITH_AES_128_CBC_SHA:"TLS_SRP_SHA_WITH_AES_128_CBC_SHA",
-                TLS_SRP_SHA_WITH_AES_256_CBC_SHA:"TLS_SRP_SHA_WITH_AES_256_CBC_SHA",
-            
-                TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA:"TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA",
-                TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA:"TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA",
-                TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA:"TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA",
-            
-                TLS_RSA_WITH_3DES_EDE_CBC_SHA:"TLS_RSA_WITH_3DES_EDE_CBC_SHA", 
-                TLS_RSA_WITH_AES_128_CBC_SHA:"TLS_RSA_WITH_AES_128_CBC_SHA",
-                TLS_RSA_WITH_AES_256_CBC_SHA:"TLS_RSA_WITH_AES_256_CBC_SHA",
-                TLS_RSA_WITH_RC4_128_SHA:"TLS_RSA_WITH_RC4_128_SHA",
-                TLS_RSA_WITH_RC4_128_MD5:"TLS_RSA_WITH_RC4_128_MD5",
-                
-                TLS_RSA_WITH_AES_128_CBC_SHA256:"TLS_RSA_WITH_AES_128_CBC_SHA256", 
-                TLS_RSA_WITH_AES_256_CBC_SHA256:"TLS_RSA_WITH_AES_256_CBC_SHA256"
-             }
+	TLS_RENEGO_PROTECTION_REQUEST = 0x00ff
+	
+	TLS_RSA_WITH_NULL_MD5                  = 0x0001 
+	TLS_RSA_WITH_NULL_SHA                  = 0x0002
+	
+	TLS_RSA_EXPORT_WITH_RC4_40_MD5         = 0x0003
+	TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5     = 0x0006
+	TLS_RSA_EXPORT_WITH_DES40_CBC_SHA      = 0x0008
+	TLS_DH_DSS_EXPORT_WITH_DES40_CBC_SHA   = 0x000B
+	TLS_DH_RSA_EXPORT_WITH_DES40_CBC_SHA   = 0x000E
+	TLS_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA  = 0x0011
+	TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA  = 0x0014
+	
+	TLS_RSA_WITH_IDEA_CBC_SHA              = 0x0007
+	TLS_RSA_WITH_DES_CBC_SHA               = 0x0009
+	TLS_DH_DSS_WITH_DES_CBC_SHA            = 0x000C
+	TLS_DH_RSA_WITH_DES_CBC_SHA            = 0x000F
+	TLS_DHE_DSS_WITH_DES_CBC_SHA           = 0x0012
+	TLS_DHE_RSA_WITH_DES_CBC_SHA           = 0x0015
 
-    srpSuites = []
-    srpSuites.append(TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA)
-    srpSuites.append(TLS_SRP_SHA_WITH_AES_128_CBC_SHA)
-    srpSuites.append(TLS_SRP_SHA_WITH_AES_256_CBC_SHA)
-    def getSrpSuites(ciphers):
-        suites = []
-        for cipher in ciphers:
-            if cipher == "aes128":
-                suites.append(CipherSuite.TLS_SRP_SHA_WITH_AES_128_CBC_SHA)
-            elif cipher == "aes256":
-                suites.append(CipherSuite.TLS_SRP_SHA_WITH_AES_256_CBC_SHA)
-            elif cipher == "3des":
-                suites.append(CipherSuite.TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA)
-        return suites
-    getSrpSuites = staticmethod(getSrpSuites)
+	TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA       = 0x000D
+	TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA       = 0x0010
+	TLS_DH_DSS_WITH_AES_256_CBC_SHA        = 0x0036
+	TLS_DH_RSA_WITH_AES_256_CBC_SHA        = 0x0037
+	TLS_DH_DSS_WITH_AES_128_CBC_SHA256	   = 0x003E
+	TLS_DH_RSA_WITH_AES_128_CBC_SHA256	   = 0x003F
+	
+	TLS_DH_DSS_WITH_AES_256_CBC_SHA256	   = 0x0068
+	TLS_DH_RSA_WITH_AES_256_CBC_SHA256	   = 0x0069
 
-    srpRsaSuites = []
-    srpRsaSuites.append(TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA)
-    srpRsaSuites.append(TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA)
-    srpRsaSuites.append(TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA)
-    def getSrpRsaSuites(ciphers):
-        suites = []
-        for cipher in ciphers:
-            if cipher == "aes128":
-                suites.append(CipherSuite.TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA)
-            elif cipher == "aes256":
-                suites.append(CipherSuite.TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA)
-            elif cipher == "3des":
-                suites.append(CipherSuite.TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA)
-        return suites
-    getSrpRsaSuites = staticmethod(getSrpRsaSuites)
+	TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA      = 0x0016
+	TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA      = 0x0013
+	TLS_DHE_DSS_WITH_AES_256_CBC_SHA       = 0x0038
+	TLS_DHE_RSA_WITH_AES_256_CBC_SHA       = 0x0039
+	TLS_DHE_DSS_WITH_AES_256_CBC_SHA256    = 0x006A
+	TLS_DHE_RSA_WITH_AES_256_CBC_SHA256    = 0x006B
+	TLS_DHE_DSS_WITH_AES_128_CBC_SHA256    = 0x0040
+	TLS_DHE_RSA_WITH_AES_128_CBC_SHA256    = 0x0067
 
-    rsaSuites = []
-    rsaSuites.append(TLS_RSA_WITH_3DES_EDE_CBC_SHA)
-    rsaSuites.append(TLS_RSA_WITH_AES_128_CBC_SHA)
-    rsaSuites.append(TLS_RSA_WITH_AES_256_CBC_SHA)
-    rsaSuites.append(TLS_RSA_WITH_RC4_128_SHA)
-    rsaSuites.append(TLS_RSA_WITH_RC4_128_MD5)
-    rsaSuites.append(TLS_RSA_WITH_AES_128_CBC_SHA256)
-    rsaSuites.append(TLS_RSA_WITH_AES_256_CBC_SHA256)
-    def getRsaSuites(ciphers):
-        suites = []
-        for cipher in ciphers:
-            if cipher == "aes128":
-                suites.append(CipherSuite.TLS_RSA_WITH_AES_128_CBC_SHA)
-            elif cipher == "aes256":
-                suites.append(CipherSuite.TLS_RSA_WITH_AES_256_CBC_SHA)
-            elif cipher == "rc4":
-                suites.append(CipherSuite.TLS_RSA_WITH_RC4_128_MD5)
-                suites.append(CipherSuite.TLS_RSA_WITH_RC4_128_SHA)
-            elif cipher == "3des":
-                suites.append(CipherSuite.TLS_RSA_WITH_3DES_EDE_CBC_SHA)
-        return suites
-    getRsaSuites = staticmethod(getRsaSuites)
+	TLS_DH_anon_EXPORT_WITH_RC4_40_MD5     = 0x0017
+	TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA  = 0x0019
+	TLS_DH_anon_WITH_DES_CBC_SHA           = 0x001A
+	TLS_DH_anon_WITH_RC4_128_MD5           = 0x0018
+	TLS_DH_anon_WITH_3DES_EDE_CBC_SHA      = 0x001B
+	TLS_DH_anon_WITH_AES_256_CBC_SHA       = 0x003A
+	TLS_DH_anon_WITH_AES_128_CBC_SHA256    = 0x006C
+	TLS_DH_anon_WITH_AES_256_CBC_SHA256    = 0x006D
+	
+	TLS_RSA_WITH_SEED_CBC_SHA	           = 0x0096
+	TLS_DH_DSS_WITH_SEED_CBC_SHA           = 0x0097
+	TLS_DH_RSA_WITH_SEED_CBC_SHA           = 0x0098
+	TLS_DHE_DSS_WITH_SEED_CBC_SHA          = 0x0099
+	TLS_DHE_RSA_WITH_SEED_CBC_SHA          = 0x009A
+	TLS_DH_anon_WITH_SEED_CBC_SHA          = 0x009B
+	
+	TLS_RSA_WITH_AES_128_GCM_SHA256        = 0x009C
+	TLS_RSA_WITH_AES_256_GCM_SHA384        = 0x009D
+	TLS_DHE_RSA_WITH_AES_128_GCM_SHA256    = 0x009E
+	TLS_DHE_RSA_WITH_AES_256_GCM_SHA384    = 0x009F
+	TLS_DH_RSA_WITH_AES_128_GCM_SHA256     = 0x00A0
+	TLS_DH_RSA_WITH_AES_256_GCM_SHA384     = 0x00A1
+	TLS_DHE_DSS_WITH_AES_128_GCM_SHA256    = 0x00A2
+	TLS_DHE_DSS_WITH_AES_256_GCM_SHA384    = 0x00A3
+	TLS_DH_DSS_WITH_AES_128_GCM_SHA256     = 0x00A4
+	TLS_DH_DSS_WITH_AES_256_GCM_SHA384     = 0x00A5
+	TLS_DH_anon_WITH_AES_128_GCM_SHA256    = 0x00A6
+	TLS_DH_anon_WITH_AES_256_GCM_SHA384    = 0x00A7
 
-    tripleDESSuites = []
-    tripleDESSuites.append(TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA)
-    tripleDESSuites.append(TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA)
-    tripleDESSuites.append(TLS_RSA_WITH_3DES_EDE_CBC_SHA)
+	TLS_RSA_WITH_CAMELLIA_128_CBC_SHA         = 0x0041
+	TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA      = 0x0042
+	TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA      = 0x0043
+	TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA     = 0x0044
+	TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA     = 0x0045
+	TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA     = 0x0046
+	TLS_RSA_WITH_CAMELLIA_256_CBC_SHA         = 0x0084
+	TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA      = 0x0085
+	TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA      = 0x0086
+	TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA     = 0x0087
+	TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA     = 0x0088
+	TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA     = 0x0089
+	TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256      = 0x00BA
+	TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA256   = 0x00BB
+	TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA256   = 0x00BC
+	TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA256  = 0x00BD
+	TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256  = 0x00BE
+	TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA256  = 0x00BF
+	TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256      = 0x00C0
+	TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA256   = 0x00C1
+	TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA256   = 0x00C2
+	TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA256  = 0x00C3
+	TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256  = 0x00C4
+	TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA256  = 0x00C5
 
-    aes128Suites = []
-    aes128Suites.append(TLS_SRP_SHA_WITH_AES_128_CBC_SHA)
-    aes128Suites.append(TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA)
-    aes128Suites.append(TLS_RSA_WITH_AES_128_CBC_SHA)
-    aes128Suites.append(TLS_RSA_WITH_AES_128_CBC_SHA256)
+	TLS_GOSTR341094_WITH_28147_CNT_IMIT = 0x0080
+	TLS_GOSTR341001_WITH_28147_CNT_IMIT = 0x0081
+	TLS_GOSTR341094_WITH_NULL_GOSTR3411 = 0x0082
+	TLS_GOSTR341001_WITH_NULL_GOSTR3411 = 0x0083
 
-    aes256Suites = []
-    aes256Suites.append(TLS_SRP_SHA_WITH_AES_256_CBC_SHA)
-    aes256Suites.append(TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA)
-    aes256Suites.append(TLS_RSA_WITH_AES_256_CBC_SHA)
-    aes128Suites.append(TLS_RSA_WITH_AES_256_CBC_SHA256)
+	toText = {
+				TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA:"TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA",
+				TLS_SRP_SHA_WITH_AES_128_CBC_SHA:"TLS_SRP_SHA_WITH_AES_128_CBC_SHA",
+				TLS_SRP_SHA_WITH_AES_256_CBC_SHA:"TLS_SRP_SHA_WITH_AES_256_CBC_SHA",
+			
+				TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA:"TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA",
+				TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA:"TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA",
+				TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA:"TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA",
+			
+				TLS_RSA_WITH_3DES_EDE_CBC_SHA:"TLS_RSA_WITH_3DES_EDE_CBC_SHA", 
+				TLS_RSA_WITH_AES_128_CBC_SHA:"TLS_RSA_WITH_AES_128_CBC_SHA",
+				TLS_RSA_WITH_AES_256_CBC_SHA:"TLS_RSA_WITH_AES_256_CBC_SHA",
+				TLS_RSA_WITH_RC4_128_SHA:"TLS_RSA_WITH_RC4_128_SHA",
+				TLS_RSA_WITH_RC4_128_MD5:"TLS_RSA_WITH_RC4_128_MD5",
+				
+				TLS_RSA_WITH_AES_128_CBC_SHA256:"TLS_RSA_WITH_AES_128_CBC_SHA256", 
+				TLS_RSA_WITH_AES_256_CBC_SHA256:"TLS_RSA_WITH_AES_256_CBC_SHA256",
+	
+			 	#unsupported
+				TLS_RSA_WITH_NULL_MD5:"TLS_RSA_WITH_NULL_MD5", 
+				TLS_RSA_WITH_NULL_SHA:"TLS_RSA_WITH_NULL_SHA",
+				
+				TLS_RSA_EXPORT_WITH_RC4_40_MD5:"TLS_RSA_EXPORT_WITH_RC4_40_MD5",
+				TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5:"TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5",
+				TLS_RSA_EXPORT_WITH_DES40_CBC_SHA:"TLS_RSA_EXPORT_WITH_DES40_CBC_SHA",
+				TLS_DH_DSS_EXPORT_WITH_DES40_CBC_SHA:"TLS_DH_DSS_EXPORT_WITH_DES40_CBC_SHA",
+				TLS_DH_RSA_EXPORT_WITH_DES40_CBC_SHA:"TLS_DH_RSA_EXPORT_WITH_DES40_CBC_SHA",
+				TLS_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA:"TLS_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA",
+				TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA:"TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA",
+				
+				TLS_RSA_WITH_IDEA_CBC_SHA:"TLS_RSA_WITH_IDEA_CBC_SHA",
+				TLS_RSA_WITH_DES_CBC_SHA:"TLS_RSA_WITH_DES_CBC_SHA",
+				TLS_DH_DSS_WITH_DES_CBC_SHA:"TLS_DH_DSS_WITH_DES_CBC_SHA",
+				TLS_DH_RSA_WITH_DES_CBC_SHA:"TLS_DH_RSA_WITH_DES_CBC_SHA",
+				TLS_DHE_DSS_WITH_DES_CBC_SHA:"TLS_DHE_DSS_WITH_DES_CBC_SHA",
+				TLS_DHE_RSA_WITH_DES_CBC_SHA:"TLS_DHE_RSA_WITH_DES_CBC_SHA",
+			
+				TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA:"TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA",
+				TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA:"TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA",
+				TLS_DH_DSS_WITH_AES_256_CBC_SHA:"TLS_DH_DSS_WITH_AES_256_CBC_SHA",
+				TLS_DH_RSA_WITH_AES_256_CBC_SHA:"TLS_DH_RSA_WITH_AES_256_CBC_SHA",
+				TLS_DH_DSS_WITH_AES_128_CBC_SHA256:"TLS_DH_DSS_WITH_AES_128_CBC_SHA256",
+				TLS_DH_RSA_WITH_AES_128_CBC_SHA256:"TLS_DH_RSA_WITH_AES_128_CBC_SHA256",
+				
+				TLS_DH_DSS_WITH_AES_256_CBC_SHA256:"TLS_DH_DSS_WITH_AES_256_CBC_SHA256",
+				TLS_DH_RSA_WITH_AES_256_CBC_SHA256:"TLS_DH_RSA_WITH_AES_256_CBC_SHA256",
+			
+				TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA:"TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA",
+				TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA:"TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA",
+				TLS_DHE_DSS_WITH_AES_256_CBC_SHA:"TLS_DHE_DSS_WITH_AES_256_CBC_SHA",
+				TLS_DHE_RSA_WITH_AES_256_CBC_SHA:"TLS_DHE_RSA_WITH_AES_256_CBC_SHA",
+				TLS_DHE_DSS_WITH_AES_256_CBC_SHA256:"TLS_DHE_DSS_WITH_AES_256_CBC_SHA256",
+				TLS_DHE_RSA_WITH_AES_256_CBC_SHA256:"TLS_DHE_RSA_WITH_AES_256_CBC_SHA256",
+				TLS_DHE_DSS_WITH_AES_128_CBC_SHA256:"TLS_DHE_DSS_WITH_AES_128_CBC_SHA256",
+				TLS_DHE_RSA_WITH_AES_128_CBC_SHA256:"TLS_DHE_RSA_WITH_AES_128_CBC_SHA256",
+			
+				TLS_DH_anon_EXPORT_WITH_RC4_40_MD5:"TLS_DH_anon_EXPORT_WITH_RC4_40_MD5",
+				TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA:"TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA",
+				TLS_DH_anon_WITH_DES_CBC_SHA:"TLS_DH_anon_WITH_DES_CBC_SHA",
+				TLS_DH_anon_WITH_RC4_128_MD5:"TLS_DH_anon_WITH_RC4_128_MD5",
+				TLS_DH_anon_WITH_3DES_EDE_CBC_SHA:"TLS_DH_anon_WITH_3DES_EDE_CBC_SHA",
+				TLS_DH_anon_WITH_AES_256_CBC_SHA:"TLS_DH_anon_WITH_AES_256_CBC_SHA",
+				TLS_DH_anon_WITH_AES_128_CBC_SHA256:"TLS_DH_anon_WITH_AES_128_CBC_SHA256",
+				TLS_DH_anon_WITH_AES_256_CBC_SHA256:"TLS_DH_anon_WITH_AES_256_CBC_SHA256",
+			 				 	
+				TLS_RSA_WITH_SEED_CBC_SHA:"TLS_RSA_WITH_SEED_CBC_SHA",
+				TLS_DH_DSS_WITH_SEED_CBC_SHA:"TLS_DH_DSS_WITH_SEED_CBC_SHA",
+				TLS_DH_RSA_WITH_SEED_CBC_SHA:"TLS_DH_RSA_WITH_SEED_CBC_SHA",
+				TLS_DHE_DSS_WITH_SEED_CBC_SHA:"TLS_DHE_DSS_WITH_SEED_CBC_SHA",
+				TLS_DHE_RSA_WITH_SEED_CBC_SHA:"TLS_DHE_RSA_WITH_SEED_CBC_SHA",
+				TLS_DH_anon_WITH_SEED_CBC_SHA:"TLS_DH_anon_WITH_SEED_CBC_SHA",						
 
-    rc4Suites = []
-    rc4Suites.append(TLS_RSA_WITH_RC4_128_SHA)
-    rc4Suites.append(TLS_RSA_WITH_RC4_128_MD5)
+				TLS_RSA_WITH_AES_128_GCM_SHA256:"TLS_RSA_WITH_AES_128_GCM_SHA256",
+				TLS_RSA_WITH_AES_256_GCM_SHA384:"TLS_RSA_WITH_AES_256_GCM_SHA384",
+				TLS_DHE_RSA_WITH_AES_128_GCM_SHA256:"TLS_DHE_RSA_WITH_AES_128_GCM_SHA256",
+				TLS_DHE_RSA_WITH_AES_256_GCM_SHA384:"TLS_DHE_RSA_WITH_AES_256_GCM_SHA384",
+				TLS_DH_RSA_WITH_AES_128_GCM_SHA256:"TLS_DH_RSA_WITH_AES_128_GCM_SHA256",
+				TLS_DH_RSA_WITH_AES_256_GCM_SHA384:"TLS_DH_RSA_WITH_AES_256_GCM_SHA384",
+				TLS_DHE_DSS_WITH_AES_128_GCM_SHA256:"TLS_DHE_DSS_WITH_AES_128_GCM_SHA256",
+				TLS_DHE_DSS_WITH_AES_256_GCM_SHA384:"TLS_DHE_DSS_WITH_AES_256_GCM_SHA384",
+				TLS_DH_DSS_WITH_AES_128_GCM_SHA256:"TLS_DH_DSS_WITH_AES_128_GCM_SHA256",
+				TLS_DH_DSS_WITH_AES_256_GCM_SHA384:"TLS_DH_DSS_WITH_AES_256_GCM_SHA384",
+				TLS_DH_anon_WITH_AES_128_GCM_SHA256:"TLS_DH_anon_WITH_AES_128_GCM_SHA256",
+				TLS_DH_anon_WITH_AES_256_GCM_SHA384:"TLS_DH_anon_WITH_AES_256_GCM_SHA384",
 
-    tls_1_2Suites = []
-    tls_1_2Suites.append(TLS_RSA_WITH_AES_128_CBC_SHA256)
-    tls_1_2Suites.append(TLS_RSA_WITH_AES_256_CBC_SHA256)
-    
-    md5Suites = [];
-    md5Suites.append(TLS_RSA_WITH_RC4_128_MD5)
-    
-    shaSuites = []
-    shaSuites.append(TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA)
-    shaSuites.append(TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA)
-    shaSuites.append(TLS_RSA_WITH_3DES_EDE_CBC_SHA)
-    shaSuites.append(TLS_SRP_SHA_WITH_AES_128_CBC_SHA)
-    shaSuites.append(TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA)
-    shaSuites.append(TLS_RSA_WITH_AES_128_CBC_SHA)
-    shaSuites.append(TLS_SRP_SHA_WITH_AES_256_CBC_SHA)
-    shaSuites.append(TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA)
-    shaSuites.append(TLS_RSA_WITH_AES_256_CBC_SHA)
-    
-    Sha256Suites = []
-    Sha256Suites.append(TLS_RSA_WITH_AES_128_CBC_SHA256)
-    Sha256Suites.append(TLS_RSA_WITH_AES_256_CBC_SHA256)
-   
+				TLS_RSA_WITH_CAMELLIA_128_CBC_SHA:"TLS_RSA_WITH_CAMELLIA_128_CBC_SHA",
+				TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA:"TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA",
+				TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA:"TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA",
+				TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA:"TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA",
+				TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA:"TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA",
+				TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA:"TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA",
+				TLS_RSA_WITH_CAMELLIA_256_CBC_SHA:"TLS_RSA_WITH_CAMELLIA_256_CBC_SHA",
+				TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA:"TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA",
+				TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA:"TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA",
+				TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA:"TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA",
+				TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA:"TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA",
+				TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA:"TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA",
+				TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256:"TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256",
+				TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA256:"TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA256",
+				TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA256:"TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA256",
+				TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA256:"TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA256",
+				TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256:"TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256",
+				TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA256:"TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA256",
+				TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256:"TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256",
+				TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA256:"TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA256",
+				TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA256:"TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA256",
+				TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA256:"TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA256",
+				TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256:"TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256",
+				TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA256:"TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA256",
+
+				TLS_GOSTR341094_WITH_28147_CNT_IMIT:"TLS_GOSTR341094_WITH_28147_CNT_IMIT",
+				TLS_GOSTR341001_WITH_28147_CNT_IMIT:"TLS_GOSTR341001_WITH_28147_CNT_IMIT",
+				TLS_GOSTR341094_WITH_NULL_GOSTR3411:"TLS_GOSTR341094_WITH_NULL_GOSTR3411",
+				TLS_GOSTR341001_WITH_NULL_GOSTR3411:"TLS_GOSTR341001_WITH_NULL_GOSTR3411",
+
+			 }
+	
+	fromText = dict(zip(toText.itervalues(), toText.iterkeys()))
+
+	srpSuites = []
+	srpSuites.append(TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA)
+	srpSuites.append(TLS_SRP_SHA_WITH_AES_128_CBC_SHA)
+	srpSuites.append(TLS_SRP_SHA_WITH_AES_256_CBC_SHA)
+	def getSrpSuites(ciphers):
+		suites = []
+		for cipher in ciphers:
+			if cipher == "aes128":
+				suites.append(CipherSuite.TLS_SRP_SHA_WITH_AES_128_CBC_SHA)
+			elif cipher == "aes256":
+				suites.append(CipherSuite.TLS_SRP_SHA_WITH_AES_256_CBC_SHA)
+			elif cipher == "3des":
+				suites.append(CipherSuite.TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA)
+		return suites
+	getSrpSuites = staticmethod(getSrpSuites)
+
+	srpRsaSuites = []
+	srpRsaSuites.append(TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA)
+	srpRsaSuites.append(TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA)
+	srpRsaSuites.append(TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA)
+	def getSrpRsaSuites(ciphers):
+		suites = []
+		for cipher in ciphers:
+			if cipher == "aes128":
+				suites.append(CipherSuite.TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA)
+			elif cipher == "aes256":
+				suites.append(CipherSuite.TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA)
+			elif cipher == "3des":
+				suites.append(CipherSuite.TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA)
+		return suites
+	getSrpRsaSuites = staticmethod(getSrpRsaSuites)
+
+	rsaSuites = []
+	rsaSuites.append(TLS_RSA_WITH_3DES_EDE_CBC_SHA)
+	rsaSuites.append(TLS_RSA_WITH_AES_128_CBC_SHA)
+	rsaSuites.append(TLS_RSA_WITH_AES_256_CBC_SHA)
+	rsaSuites.append(TLS_RSA_WITH_RC4_128_SHA)
+	rsaSuites.append(TLS_RSA_WITH_RC4_128_MD5)
+	rsaSuites.append(TLS_RSA_WITH_AES_128_CBC_SHA256)
+	rsaSuites.append(TLS_RSA_WITH_AES_256_CBC_SHA256)
+	def getRsaSuites(ciphers):
+		suites = []
+		for cipher in ciphers:
+			if cipher == "aes128":
+				suites.append(CipherSuite.TLS_RSA_WITH_AES_128_CBC_SHA)
+			elif cipher == "aes256":
+				suites.append(CipherSuite.TLS_RSA_WITH_AES_256_CBC_SHA)
+			elif cipher == "rc4":
+				suites.append(CipherSuite.TLS_RSA_WITH_RC4_128_MD5)
+				suites.append(CipherSuite.TLS_RSA_WITH_RC4_128_SHA)
+			elif cipher == "3des":
+				suites.append(CipherSuite.TLS_RSA_WITH_3DES_EDE_CBC_SHA)
+		return suites
+	getRsaSuites = staticmethod(getRsaSuites)
+
+	tripleDESSuites = []
+	tripleDESSuites.append(TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA)
+	tripleDESSuites.append(TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA)
+	tripleDESSuites.append(TLS_RSA_WITH_3DES_EDE_CBC_SHA)
+
+	aes128Suites = []
+	aes128Suites.append(TLS_SRP_SHA_WITH_AES_128_CBC_SHA)
+	aes128Suites.append(TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA)
+	aes128Suites.append(TLS_RSA_WITH_AES_128_CBC_SHA)
+	aes128Suites.append(TLS_RSA_WITH_AES_128_CBC_SHA256)
+
+	aes256Suites = []
+	aes256Suites.append(TLS_SRP_SHA_WITH_AES_256_CBC_SHA)
+	aes256Suites.append(TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA)
+	aes256Suites.append(TLS_RSA_WITH_AES_256_CBC_SHA)
+	aes256Suites.append(TLS_RSA_WITH_AES_256_CBC_SHA256)
+
+	rc4Suites = []
+	rc4Suites.append(TLS_RSA_WITH_RC4_128_SHA)
+	rc4Suites.append(TLS_RSA_WITH_RC4_128_MD5)
+
+	tls_1_2Suites = []
+	tls_1_2Suites.append(TLS_RSA_WITH_AES_256_CBC_SHA256)
+	tls_1_2Suites.append(TLS_RSA_WITH_AES_128_CBC_SHA256)
+	
+	blockCipherSuites = tripleDESSuites + aes128Suites + aes256Suites
+	
+	md5Suites = [];
+	md5Suites.append(TLS_RSA_WITH_RC4_128_MD5)
+	
+	shaSuites = []
+	shaSuites.append(TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA)
+	shaSuites.append(TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA)
+	shaSuites.append(TLS_RSA_WITH_3DES_EDE_CBC_SHA)
+	shaSuites.append(TLS_SRP_SHA_WITH_AES_128_CBC_SHA)
+	shaSuites.append(TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA)
+	shaSuites.append(TLS_RSA_WITH_AES_128_CBC_SHA)
+	shaSuites.append(TLS_SRP_SHA_WITH_AES_256_CBC_SHA)
+	shaSuites.append(TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA)
+	shaSuites.append(TLS_RSA_WITH_AES_256_CBC_SHA)
+	
+	Sha256Suites = []
+	Sha256Suites.append(TLS_RSA_WITH_AES_128_CBC_SHA256)
+	Sha256Suites.append(TLS_RSA_WITH_AES_256_CBC_SHA256)
+	
+	unsupportedSuites = [
+		TLS_RSA_WITH_NULL_MD5, 
+		TLS_RSA_WITH_NULL_SHA,
+
+		TLS_RSA_EXPORT_WITH_RC4_40_MD5,
+		TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5,
+		TLS_RSA_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DH_DSS_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DH_RSA_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA,
+
+		TLS_RSA_WITH_IDEA_CBC_SHA,
+		TLS_RSA_WITH_DES_CBC_SHA,
+		TLS_DH_DSS_WITH_DES_CBC_SHA,
+		TLS_DH_RSA_WITH_DES_CBC_SHA,
+		TLS_DHE_DSS_WITH_DES_CBC_SHA,
+		TLS_DHE_RSA_WITH_DES_CBC_SHA,
+
+		TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA,
+		TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA,
+		TLS_DH_DSS_WITH_AES_256_CBC_SHA,
+		TLS_DH_RSA_WITH_AES_256_CBC_SHA,
+		TLS_DH_DSS_WITH_AES_128_CBC_SHA256,
+		TLS_DH_RSA_WITH_AES_128_CBC_SHA256,
+		
+		TLS_DH_DSS_WITH_AES_256_CBC_SHA256,
+		TLS_DH_RSA_WITH_AES_256_CBC_SHA256,
+
+		TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA,
+		TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA,
+		TLS_DHE_DSS_WITH_AES_256_CBC_SHA,
+		TLS_DHE_RSA_WITH_AES_256_CBC_SHA,
+		TLS_DHE_DSS_WITH_AES_256_CBC_SHA256,
+		TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,
+		TLS_DHE_DSS_WITH_AES_128_CBC_SHA256,
+		TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,
+
+		TLS_DH_anon_EXPORT_WITH_RC4_40_MD5,
+		TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DH_anon_WITH_DES_CBC_SHA,
+		TLS_DH_anon_WITH_RC4_128_MD5,
+		TLS_DH_anon_WITH_3DES_EDE_CBC_SHA,
+		TLS_DH_anon_WITH_AES_256_CBC_SHA,
+		TLS_DH_anon_WITH_AES_128_CBC_SHA256,
+		TLS_DH_anon_WITH_AES_256_CBC_SHA256,
+
+		TLS_RSA_WITH_SEED_CBC_SHA,
+		TLS_DH_DSS_WITH_SEED_CBC_SHA,
+		TLS_DH_RSA_WITH_SEED_CBC_SHA,
+		TLS_DHE_DSS_WITH_SEED_CBC_SHA,
+		TLS_DHE_RSA_WITH_SEED_CBC_SHA,
+		TLS_DH_anon_WITH_SEED_CBC_SHA,						
+
+		TLS_RSA_WITH_AES_128_GCM_SHA256,
+		TLS_RSA_WITH_AES_256_GCM_SHA384,
+		TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,
+		TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,
+		TLS_DH_RSA_WITH_AES_128_GCM_SHA256,
+		TLS_DH_RSA_WITH_AES_256_GCM_SHA384,
+		TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,
+		TLS_DHE_DSS_WITH_AES_256_GCM_SHA384,
+		TLS_DH_DSS_WITH_AES_128_GCM_SHA256,
+		TLS_DH_DSS_WITH_AES_256_GCM_SHA384,
+		TLS_DH_anon_WITH_AES_128_GCM_SHA256,
+		TLS_DH_anon_WITH_AES_256_GCM_SHA384,
+
+		TLS_RSA_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_RSA_WITH_CAMELLIA_256_CBC_SHA,
+		TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA,
+		TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA,
+		TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA,
+		TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA,
+		TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA,
+		TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256,
+		TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA256,
+		TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA256,
+		TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA256,
+		TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256,
+		TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA256,
+		TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256,
+		TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA256,
+		TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA256,
+		TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA256,
+		TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256,
+		TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA256,
+
+		TLS_GOSTR341094_WITH_28147_CNT_IMIT,
+		TLS_GOSTR341001_WITH_28147_CNT_IMIT,
+		TLS_GOSTR341094_WITH_NULL_GOSTR3411,
+		TLS_GOSTR341001_WITH_NULL_GOSTR3411,
+	]
+
+	likelyUnsupportedSuites = [
+		TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA,
+		TLS_DHE_RSA_WITH_AES_256_CBC_SHA,
+		TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,
+		TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,
+
+	]
+
+	lessLikelyUnsupportedSuites = [
+		TLS_RSA_EXPORT_WITH_RC4_40_MD5,
+		TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5,
+		TLS_RSA_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA,
+
+		TLS_RSA_WITH_DES_CBC_SHA,
+		TLS_DHE_RSA_WITH_DES_CBC_SHA,
+
+		TLS_RSA_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_RSA_WITH_CAMELLIA_256_CBC_SHA,
+		TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA,
+	]
+
+	unlikelyUnsupportedSuites = [x for x in unsupportedSuites if x not in (likelyUnsupportedSuites + lessLikelyUnsupportedSuites)] 
+
+	weakSuites = [
+		TLS_RSA_WITH_NULL_MD5, 
+		TLS_RSA_WITH_NULL_SHA,
+
+		TLS_RSA_EXPORT_WITH_RC4_40_MD5,
+		TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5,
+		TLS_RSA_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DH_DSS_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DH_RSA_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA,
+
+		TLS_RSA_WITH_IDEA_CBC_SHA,
+		TLS_RSA_WITH_DES_CBC_SHA,
+		TLS_DH_DSS_WITH_DES_CBC_SHA,
+		TLS_DH_RSA_WITH_DES_CBC_SHA,
+		TLS_DHE_DSS_WITH_DES_CBC_SHA,
+		TLS_DHE_RSA_WITH_DES_CBC_SHA,
+
+		TLS_DH_anon_EXPORT_WITH_RC4_40_MD5,
+		TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DH_anon_WITH_DES_CBC_SHA,
+		TLS_DH_anon_WITH_RC4_128_MD5,
+		TLS_DH_anon_WITH_3DES_EDE_CBC_SHA,
+		TLS_DH_anon_WITH_AES_256_CBC_SHA,
+		TLS_DH_anon_WITH_AES_128_CBC_SHA256,
+		TLS_DH_anon_WITH_AES_256_CBC_SHA256,
+		TLS_DH_anon_WITH_SEED_CBC_SHA,						
+
+		TLS_DH_anon_WITH_AES_128_GCM_SHA256,
+		TLS_DH_anon_WITH_AES_256_GCM_SHA384,
+
+		TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA,
+		TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA256,
+		TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA256,
+
+		TLS_GOSTR341094_WITH_NULL_GOSTR3411,
+		TLS_GOSTR341001_WITH_NULL_GOSTR3411,
+
+	]
+	
+	dheSuites = [
+		TLS_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DHE_DSS_WITH_DES_CBC_SHA,
+		TLS_DHE_RSA_WITH_DES_CBC_SHA,
+
+		TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA,
+		TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA,
+		TLS_DHE_DSS_WITH_AES_256_CBC_SHA,
+		TLS_DHE_RSA_WITH_AES_256_CBC_SHA,
+		TLS_DHE_DSS_WITH_AES_256_CBC_SHA256,
+		TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,
+		TLS_DHE_DSS_WITH_AES_128_CBC_SHA256,
+		TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,
+
+		TLS_DH_anon_EXPORT_WITH_RC4_40_MD5,
+		TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DH_anon_WITH_DES_CBC_SHA,
+		TLS_DH_anon_WITH_RC4_128_MD5,
+		TLS_DH_anon_WITH_3DES_EDE_CBC_SHA,
+		TLS_DH_anon_WITH_AES_256_CBC_SHA,
+		TLS_DH_anon_WITH_AES_128_CBC_SHA256,
+		TLS_DH_anon_WITH_AES_256_CBC_SHA256,
+
+		TLS_DHE_DSS_WITH_SEED_CBC_SHA,
+		TLS_DHE_RSA_WITH_SEED_CBC_SHA,
+		TLS_DH_anon_WITH_SEED_CBC_SHA,
+
+		TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,
+		TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,
+		TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,
+		TLS_DHE_DSS_WITH_AES_256_GCM_SHA384,
+		TLS_DH_anon_WITH_AES_128_GCM_SHA256,
+		TLS_DH_anon_WITH_AES_256_GCM_SHA384,							
+						
+		TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA,
+		TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA,
+		TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA,
+		TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA256,
+		TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256,
+		TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA256,
+		TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA256,
+		TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256,
+		TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA256,
+	]
+
+	
+	anonSuites = [
+		TLS_DH_anon_EXPORT_WITH_RC4_40_MD5,
+		TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA,
+		TLS_DH_anon_WITH_DES_CBC_SHA,
+		TLS_DH_anon_WITH_RC4_128_MD5,
+		TLS_DH_anon_WITH_3DES_EDE_CBC_SHA,
+		TLS_DH_anon_WITH_AES_256_CBC_SHA,
+		TLS_DH_anon_WITH_AES_128_CBC_SHA256,
+		TLS_DH_anon_WITH_AES_256_CBC_SHA256,
+
+		TLS_DH_anon_WITH_SEED_CBC_SHA,						
+		TLS_DH_anon_WITH_AES_128_GCM_SHA256,
+		TLS_DH_anon_WITH_AES_256_GCM_SHA384,							
+
+		TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA,
+		TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA,
+		TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA256,
+		TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA256,
+	]
+	
+	minimum_TLSversion = {
+		TLS_DH_anon_WITH_AES_128_CBC_SHA256:(3,3),
+		TLS_DH_anon_WITH_AES_256_CBC_SHA256:(3,3),
+		TLS_DH_DSS_WITH_AES_128_CBC_SHA256:(3,3),
+		TLS_DH_RSA_WITH_AES_128_CBC_SHA256:(3,3),
+		TLS_DHE_DSS_WITH_AES_256_CBC_SHA256:(3,3),
+		TLS_DHE_RSA_WITH_AES_256_CBC_SHA256:(3,3),
+		TLS_DHE_DSS_WITH_AES_128_CBC_SHA256:(3,3),
+		TLS_DHE_RSA_WITH_AES_128_CBC_SHA256:(3,3),
+		TLS_RSA_WITH_AES_128_CBC_SHA256:(3,3),
+		TLS_RSA_WITH_AES_256_CBC_SHA256:(3,3),
+		TLS_RSA_WITH_AES_128_CBC_SHA:(3,1),
+		TLS_RSA_WITH_AES_256_CBC_SHA:(3,1),
+
+		TLS_RSA_WITH_AES_128_GCM_SHA256:(3,3),
+		TLS_RSA_WITH_AES_256_GCM_SHA384:(3,3),
+		TLS_DHE_RSA_WITH_AES_128_GCM_SHA256:(3,3),
+		TLS_DHE_RSA_WITH_AES_256_GCM_SHA384:(3,3),
+		TLS_DH_RSA_WITH_AES_128_GCM_SHA256:(3,3),
+		TLS_DH_RSA_WITH_AES_256_GCM_SHA384:(3,3),
+		TLS_DHE_DSS_WITH_AES_128_GCM_SHA256:(3,3),
+		TLS_DHE_DSS_WITH_AES_256_GCM_SHA384:(3,3),
+		TLS_DH_DSS_WITH_AES_128_GCM_SHA256:(3,3),
+		TLS_DH_DSS_WITH_AES_256_GCM_SHA384:(3,3),
+		TLS_DH_anon_WITH_AES_128_GCM_SHA256:(3,3),
+		TLS_DH_anon_WITH_AES_256_GCM_SHA384:(3,3),							
+
+	}
+	maximum_TLSversion = {
+		TLS_RSA_EXPORT_WITH_RC4_40_MD5:(3,1),
+		TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5:(3,1),
+		TLS_RSA_EXPORT_WITH_DES40_CBC_SHA:(3,1),
+		TLS_DH_DSS_EXPORT_WITH_DES40_CBC_SHA:(3,1),
+		TLS_DH_RSA_EXPORT_WITH_DES40_CBC_SHA:(3,1),
+		TLS_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA:(3,1),
+		TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA:(3,1),
+
+		TLS_RSA_WITH_IDEA_CBC_SHA:(3,1),
+		TLS_RSA_WITH_DES_CBC_SHA:(3,1),
+		TLS_DH_DSS_WITH_DES_CBC_SHA:(3,1),
+		TLS_DH_RSA_WITH_DES_CBC_SHA:(3,1),
+		TLS_DHE_DSS_WITH_DES_CBC_SHA:(3,1),
+		TLS_DHE_RSA_WITH_DES_CBC_SHA:(3,1),
+
+		TLS_DH_anon_EXPORT_WITH_RC4_40_MD5:(3,1),
+		TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA:(3,1),
+		TLS_DH_anon_WITH_DES_CBC_SHA:(3,1),
+	}
 
 class Fault:
-    badUsername = 101
-    badPassword = 102
-    badA = 103
-    clientSrpFaults = range(101,104)
+	badUsername = 101
+	badPassword = 102
+	badA = 103
+	clientSrpFaults = range(101,104)
 
-    badVerifyMessage = 601
-    clientCertFaults = range(601,602)
+	badVerifyMessage = 601
+	clientCertFaults = range(601,602)
 
-    badPremasterPadding = 501
-    shortPremasterSecret = 502
-    clientNoAuthFaults = range(501,503)
+	badPremasterPadding = 501
+	shortPremasterSecret = 502
+	clientNoAuthFaults = range(501,503)
 
-    badIdentifier = 401
-    badSharedKey = 402
-    clientSharedKeyFaults = range(401,403)
+	badIdentifier = 401
+	badSharedKey = 402
+	clientSharedKeyFaults = range(401,403)
 
-    badB = 201
-    serverFaults = range(201,202)
+	badB = 201
+	serverFaults = range(201,202)
 
-    badFinished = 300
-    badMAC = 301
-    badPadding = 302
-    genericFaults = range(300,303)
+	badFinished = 300
+	badMAC = 301
+	badPadding = 302
+	genericFaults = range(300,303)
 
-    faultAlerts = {\
-        badUsername: (AlertDescription.unknown_srp_username, \
-                      AlertDescription.bad_record_mac),\
-        badPassword: (AlertDescription.bad_record_mac,),\
-        badA: (AlertDescription.illegal_parameter,),\
-        badIdentifier: (AlertDescription.handshake_failure,),\
-        badSharedKey: (AlertDescription.bad_record_mac,),\
-        badPremasterPadding: (AlertDescription.bad_record_mac,),\
-        shortPremasterSecret: (AlertDescription.bad_record_mac,),\
-        badVerifyMessage: (AlertDescription.decrypt_error,),\
-        badFinished: (AlertDescription.decrypt_error,),\
-        badMAC: (AlertDescription.bad_record_mac,),\
-        badPadding: (AlertDescription.bad_record_mac,)
-        }
+	faultAlerts = {\
+		badUsername: (AlertDescription.unknown_srp_username, \
+					  AlertDescription.bad_record_mac),\
+		badPassword: (AlertDescription.bad_record_mac,),\
+		badA: (AlertDescription.illegal_parameter,),\
+		badIdentifier: (AlertDescription.handshake_failure,),\
+		badSharedKey: (AlertDescription.bad_record_mac,),\
+		badPremasterPadding: (AlertDescription.bad_record_mac,),\
+		shortPremasterSecret: (AlertDescription.bad_record_mac,),\
+		badVerifyMessage: (AlertDescription.decrypt_error,),\
+		badFinished: (AlertDescription.decrypt_error,),\
+		badMAC: (AlertDescription.bad_record_mac,),\
+		badPadding: (AlertDescription.bad_record_mac,)
+		}
 
-    faultNames = {\
-        badUsername: "bad username",\
-        badPassword: "bad password",\
-        badA: "bad A",\
-        badIdentifier: "bad identifier",\
-        badSharedKey: "bad sharedkey",\
-        badPremasterPadding: "bad premaster padding",\
-        shortPremasterSecret: "short premaster secret",\
-        badVerifyMessage: "bad verify message",\
-        badFinished: "bad finished message",\
-        badMAC: "bad MAC",\
-        badPadding: "bad padding"
-        }
+	faultNames = {\
+		badUsername: "bad username",\
+		badPassword: "bad password",\
+		badA: "bad A",\
+		badIdentifier: "bad identifier",\
+		badSharedKey: "bad sharedkey",\
+		badPremasterPadding: "bad premaster padding",\
+		shortPremasterSecret: "short premaster secret",\
+		badVerifyMessage: "bad verify message",\
+		badFinished: "bad finished message",\
+		badMAC: "bad MAC",\
+		badPadding: "bad padding"
+		}
+
+class CertificateStatusType:
+	OCSP = 1
+
+class IndividualExtensionsTested:
+	
+	SERVERNAME = "Server Name Indication (SNI)"
+	CERTSTATUS = "Certificate Status Extension"
+	RENEGO = "Renego Indication Extension"
+	SESSIONTICKET = "Session Ticket"
+	SIGNATURE_ALGS = "Signature Algorithms"
+	
+	ALL = [SERVERNAME, CERTSTATUS, RENEGO, SESSIONTICKET, SIGNATURE_ALGS]

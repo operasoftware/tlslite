@@ -92,13 +92,13 @@ class X509:
         #Create a public key instance
         self.publicKey = _createPublicRSAKey(n, e)
 
-    def getFingerprint(self):
+    def getFingerprint(self, alg=sha.sha):
         """Get the hex-encoded fingerprint of this certificate.
 
         @rtype: str
         @return: A hex-encoded fingerprint.
         """
-        return sha.sha(self.bytes).hexdigest()
+        return alg(self.bytes).hexdigest()
 
     def getCommonName(self):
         """Get the Subject's Common Name from the certificate.
